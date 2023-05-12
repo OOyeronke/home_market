@@ -21,12 +21,10 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 60,
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(
-          color: Colors.grey,
-        ),
+        border: Border.all(color: Color(0xFFADB5BD), width: 2),
         borderRadius: const BorderRadius.all(
           Radius.circular(20),
         ),
@@ -40,19 +38,19 @@ class CustomTextField extends StatelessWidget {
         //textAlign: TextAlign.center,
         cursorColor: Theme.of(context).primaryColor,
         decoration: InputDecoration(
-          border: InputBorder.none,
-          prefixIcon: Icon(
-            iconData2,
-          ),
-          suffixIcon: GestureDetector(
-            onTap: onPressed,
-            child: Icon(
-              iconData,
-              color: Colors.grey,
+            border: InputBorder.none,
+            prefixIcon: Icon(
+              iconData2,
             ),
-          ),
-          hintText: hintText,
-        ),
+            suffixIcon: GestureDetector(
+              onTap: onPressed,
+              child: Icon(
+                iconData,
+                color: Colors.grey,
+              ),
+            ),
+            hintText: hintText,
+            hintStyle: TextStyle(color: Color(0xFFADB5BD))),
       ),
     );
   }

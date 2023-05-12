@@ -1,16 +1,10 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:home_market/screens/home/main_screen.dart';
-import 'package:path_provider/path_provider.dart';
-
 import '../../utilities/big_text.dart';
 import '../../utilities/small_text.dart';
 import '../../widget/button.dart';
 import '../../widget/custom_text_field.dart';
-import '../home/home_page.dart';
 import 'login_page.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -70,13 +64,18 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                 ],
               ),
               SmallText(
-                  text: "Welcome, fill in your details to start shopping"),
+                text: "Welcome, fill in your details to start shopping",
+                color: Color(0xFF6C757D),
+              ),
               const SizedBox(
                 height: 10,
               ),
               const Text(
                 "Full Name",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your full name",
@@ -89,7 +88,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
               ),
               const Text(
                 "Email address",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your email address",
@@ -102,7 +104,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
               ),
               const Text(
                 "Business Name",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your business name",
@@ -115,7 +120,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
               ),
               const Text(
                 "Business address",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your business address",
@@ -128,7 +136,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
               ),
               const Text(
                 "Govt Id",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Upload your govt Id",
@@ -140,25 +151,28 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                   getImageFromGallery();
                 },
               ),
-              Container(
-                width: 300,
-                height: 50,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(
-                    color: Colors.grey,
-                  ),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(20),
-                  ),
-                ),
-              ),
+              // Container(
+              //   width: 300,
+              //   height: 50,
+              //   decoration: BoxDecoration(
+              //     color: Colors.white,
+              //     border: Border.all(
+              //       color: Colors.grey,
+              //     ),
+              //     borderRadius: const BorderRadius.all(
+              //       Radius.circular(20),
+              //     ),
+              //   ),
+              // ),
               const SizedBox(
                 height: 10,
               ),
               const Text(
                 "Password",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your password",
@@ -171,7 +185,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
               ),
               const Text(
                 "Confirm Password",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Re-enter your password",
@@ -196,6 +213,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                 SmallText(
                   text: "Already have an account?",
                   size: 16,
+                  color: Color(0xFF6C757D),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -204,9 +222,13 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                   child: SmallText(
                     text: "Log In",
                     size: 16,
+                    color: Color(0xFF656D4A),
                   ),
                 )
               ]),
+              const SizedBox(
+                height: 20,
+              )
             ],
           ),
         ),

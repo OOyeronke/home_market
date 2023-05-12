@@ -1,8 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_market/screens/logging_screens.dart/login_page.dart';
-import 'package:home_market/screens/logging_screens.dart/seller_sign_up_page.dart';
 import 'package:home_market/screens/logging_screens.dart/sign_up_screen.dart';
 import 'package:home_market/screens/slider.dart';
 
@@ -80,8 +78,8 @@ class _LandingState extends State<Landing> {
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: (index == _currentPage)
-                                ? Colors.blue
-                                : Colors.blue.withOpacity(0.5)));
+                                ? Color(0xFF333D29)
+                                : Color(0xFFCED4DA).withOpacity(0.5)));
                   })),
               CustomButton(
                 text: 'Sign Up',
@@ -98,6 +96,7 @@ class _LandingState extends State<Landing> {
                   SmallText(
                     text: "Already have an account?",
                     size: 16,
+                    color: Color(0xFF6C757D),
                   ),
                   GestureDetector(
                     onTap: () {
@@ -106,6 +105,7 @@ class _LandingState extends State<Landing> {
                     child: SmallText(
                       text: "Log in",
                       size: 16,
+                      color: Color(0xFF656D4A),
                     ),
                   )
                 ],

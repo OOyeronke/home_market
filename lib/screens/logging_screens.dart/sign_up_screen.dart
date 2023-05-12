@@ -72,6 +72,8 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             CustomButton(
                               text: 'Sign Up as a Seller',
+                              color: Colors.white,
+                              textcolor: Color(0xFF656D4A),
                               onPressed: () {
                                 Get.to(() => SellerSignUpPage());
                               },
@@ -82,12 +84,18 @@ class SignUpScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SmallText(text: "Already have an account?"),
+                                SmallText(
+                                  text: "Already have an account?",
+                                  color: Color(0xFF6C757D),
+                                ),
                                 GestureDetector(
                                   onTap: () {
                                     Get.to(() => LogIn());
                                   },
-                                  child: SmallText(text: "Log in"),
+                                  child: SmallText(
+                                    text: "Log in",
+                                    color: Color(0xFF656D4A),
+                                  ),
                                 )
                               ],
                             ),

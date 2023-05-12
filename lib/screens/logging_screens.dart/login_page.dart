@@ -29,13 +29,17 @@ class _LogInState extends State<LogIn> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BigText(text: "Hello Again!"),
+                  BigText(
+                    text: "Hello Again!",
+                    color: Color(0xFF656D4A),
+                  ),
                   Image.asset("assets/images/fresh-romaine-lettuce-white 4.png")
                 ],
               ),
               SmallText(
                 text: "Welcome back, we have missed you",
                 size: 14,
+                color: Color(0xFF6C757D),
               ),
               const SizedBox(
                 height: 40,
@@ -45,7 +49,10 @@ class _LogInState extends State<LogIn> {
                 children: [
                   const Text(
                     "Enter address",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Color(0xFF343A40)),
                   ),
                   CustomTextField(
                     hintText: "Enter your email address",
@@ -59,9 +66,9 @@ class _LogInState extends State<LogIn> {
                   const Text(
                     "Password",
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                        color: Color(0xFF343A40)),
                   ),
                   CustomTextField(
                     hintText: "Enter your password",
@@ -74,6 +81,7 @@ class _LogInState extends State<LogIn> {
                       padding: const EdgeInsets.only(right: 20),
                       child: const Text(
                         "Forgot your password?",
+                        style: TextStyle(color: Color(0xFF656D4A)),
                       )),
                   const SizedBox(
                     height: 10,
@@ -94,6 +102,7 @@ class _LogInState extends State<LogIn> {
                       SmallText(
                         text: "Don't have an account yet?",
                         size: 16,
+                        color: Color(0xFF6C757D),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -102,6 +111,7 @@ class _LogInState extends State<LogIn> {
                         child: SmallText(
                           text: "Sign Up",
                           size: 16,
+                          color: Color(0xFF656D4A),
                         ),
                       )
                     ],
@@ -113,7 +123,10 @@ class _LogInState extends State<LogIn> {
                     Expanded(
                       child: Divider(),
                     ),
-                    Text("  Or Login with Biometrics  "),
+                    Text(
+                      "  Or Login with Biometrics  ",
+                      style: TextStyle(color: Color(0xFF6C757D)),
+                    ),
                     Expanded(
                       child: Divider(),
                     ),
@@ -128,7 +141,7 @@ class _LogInState extends State<LogIn> {
                       height: 70,
                       width: 70,
                       decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: Colors.grey),
+                          shape: BoxShape.circle, color: Color(0xFFC2C5AA)),
                       child: Image.asset(
                         "assets/images/fingerprint.png",
                         fit: BoxFit.cover,

@@ -49,13 +49,18 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                 ],
               ),
               SmallText(
-                  text: "Welcome, fill in your details to start shopping"),
+                text: "Welcome, fill in your details to start shopping",
+                color: Color(0xFF6C757D),
+              ),
               const SizedBox(
                 height: 10,
               ),
               const Text(
                 "Full Name",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your full name",
@@ -68,7 +73,10 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
               ),
               const Text(
                 "Email address",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your email address",
@@ -81,7 +89,10 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
               ),
               const Text(
                 "Password",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Enter your password",
@@ -94,7 +105,10 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
               ),
               const Text(
                 "Confirm Password",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Color(0xFF343A40)),
               ),
               CustomTextField(
                 hintText: "Re-enter your password",
@@ -119,6 +133,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                 SmallText(
                   text: "Already have an account?",
                   size: 16,
+                  color: Color(0xFF6C757D),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -127,6 +142,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                   child: SmallText(
                     text: "Log In",
                     size: 16,
+                    color: Color(0xFF656D4A),
                   ),
                 )
               ]),
