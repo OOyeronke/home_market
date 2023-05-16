@@ -56,13 +56,13 @@ class SignUpScreen extends StatelessWidget {
                             SmallText(
                               text: "Sign up a buyer or a seller",
                               size: 16,
-                              color: Color(0xFF6C757D),
                             ),
                             const SizedBox(
                               height: 20,
                             ),
                             CustomButton(
                               text: 'Sign Up as a Buyer',
+                              textsize: 18,
                               onPressed: () {
                                 Get.to(() => BuyerSignUpPage());
                               },
@@ -72,6 +72,7 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             CustomButton(
                               text: 'Sign Up as a Seller',
+                              textsize: 18,
                               color: Colors.white,
                               textcolor: Color(0xFF656D4A),
                               onPressed: () {
@@ -86,14 +87,15 @@ class SignUpScreen extends StatelessWidget {
                               children: [
                                 SmallText(
                                   text: "Already have an account?",
-                                  color: Color(0xFF6C757D),
+                                  size: 14,
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     Get.to(() => LogIn());
                                   },
                                   child: SmallText(
-                                    text: "Log in",
+                                    text: "Log In",
+                                    size: 14,
                                     color: Color(0xFF656D4A),
                                   ),
                                 )

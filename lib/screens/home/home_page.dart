@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_market/screens/home/product_page.dart';
 import 'package:home_market/screens/products/products_item.dart';
+import 'package:home_market/utilities/big_text.dart';
+import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/custom_text_field.dart';
 import 'package:home_market/widget/product_button.dart';
 import '../logging_screens.dart/login_page.dart';
@@ -19,25 +22,33 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+        padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Welcome"),
-                    Text(
-                      "May Valerie",
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    SmallText(
+                      text: "Welcome",
+                      size: 14,
+                    ),
+                    BigText(
+                      text: "May Valerie",
+                      size: 20,
                     ),
                   ],
                 ),
                 Container(
+                  //padding: const EdgeInsets.all(20),
+
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: const Color(0xFF8DBF2C),
+                  ),
                   child: Image.asset(
                     "assets/images/carrot.png",
                     fit: BoxFit.cover,
@@ -57,44 +68,44 @@ class _HomePageState extends State<HomePage> {
             ),
             SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 child: Row(
                   children: [
                     ProductButton(
                       text: "All",
                       onPressed: () {
-                        Get.to(() => LogIn());
+                        Get.to(() => const LogIn());
                       },
                     ),
                     ProductButton(
                       text: "Groceries",
                       onPressed: () {
-                        Get.to(() => LogIn());
+                        Get.to(() => const LogIn());
                       },
                     ),
                     ProductButton(
                       text: "Vegetables",
                       onPressed: () {
-                        Get.to(() => LogIn());
+                        Get.to(() => const LogIn());
                       },
                     ),
                     ProductButton(
                       text: "Fruit",
                       onPressed: () {
-                        Get.to(() => LogIn());
+                        Get.to(() => const LogIn());
                       },
                     ),
                     ProductButton(
                       text: "Meat",
                       onPressed: () {
-                        Get.to(() => LogIn());
+                        Get.to(() => const LogIn());
                       },
                     ),
                   ],
                 )),
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               child: Container(
                 padding:
                     const EdgeInsets.only(top: 1, right: 5, left: 5, bottom: 1),
@@ -184,12 +195,10 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Text(
-                      "Recently viewed",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    BigText(
+                      text: "Recently Viewed",
+                      color: const Color(0xFF000000),
+                      size: 20,
                     ),
                     Column(
                       children: [
@@ -199,20 +208,32 @@ class _HomePageState extends State<HomePage> {
                             const SizedBox(
                               width: 20,
                             ),
-                            const Column(
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("Carrot"),
-                                Text(
-                                  "Vegetables",
-                                  style: TextStyle(
-                                      fontSize: 10, color: Colors.black26),
+                                BigText(
+                                    text: "Carrot",
+                                    size: 13,
+                                    color: const Color(0xFF6C757D)),
+                                SmallText(
+                                  text: "Vegetable",
+                                  color: const Color(0xFFADB5BD),
+                                  size: 10,
                                 )
                               ],
                             ),
                             const SizedBox(
                               width: 100,
                             ),
-                            const Text("\$10.99")
+                            BigText(
+                              text: "\$10.99",
+                              color: const Color(0xFF936639),
+                              size: 18,
+                            )
+                            // const Text(
+                            //   "\$10.99",
+                            //   style: TextStyle(color: Color(0xFF936639)),
+                            // )
                           ],
                         )
                       ],

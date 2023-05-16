@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SmallText extends StatelessWidget {
   final Color? color;
   final String text;
-  double size;
-  double height;
+  final double size;
+  final double height;
   SmallText({
     super.key,
-    this.color = Colors.black38,
+    this.color = const Color(0xFF6C757D),
     required this.text,
     this.height = 1.2,
     this.size = 12,
@@ -17,12 +18,7 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(
-        fontSize: size,
-        fontFamily: 'Roboto',
-        color: color,
-        height: height,
-      ),
+      style: GoogleFonts.inter(fontSize: size, color: color, height: height),
     );
   }
 }

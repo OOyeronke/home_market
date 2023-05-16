@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ProductButton extends StatelessWidget {
   final String text;
@@ -15,7 +16,7 @@ class ProductButton extends StatelessWidget {
       margin: const EdgeInsets.only(left: 20),
       child: Text(
         text,
-        style: TextStyle(color: Colors.black, fontSize: 12),
+        style: GoogleFonts.inter(color: const Color(0xFF6C757D), fontSize: 12),
       ),
     );
   }

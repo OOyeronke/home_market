@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_market/screens/home/home_page.dart';
 import 'package:home_market/screens/home/main_screen.dart';
 import 'package:home_market/screens/logging_screens.dart/login_page.dart';
 import 'package:home_market/utilities/big_text.dart';
@@ -26,7 +25,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 50.0, left: 20, right: 10),
+        padding: const EdgeInsets.only(top: 40.0, left: 20, right: 10),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,29 +37,21 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                     text: "Sign Up",
                     color: Color(0xFF656D4A),
                   ),
-                  Container(
-                      padding: EdgeInsets.all(20),
-                      alignment: Alignment.center,
-                      color: Colors.white,
-                      child: Image.asset(
-                        "assets/images/lettuce2.png",
-                        fit: BoxFit.cover,
-                      )),
+                  Image.asset(
+                    "assets/images/lettuce_side.png",
+                    fit: BoxFit.cover,
+                  ),
                 ],
               ),
               SmallText(
                 text: "Welcome, fill in your details to start shopping",
-                color: Color(0xFF6C757D),
               ),
               const SizedBox(
-                height: 10,
+                height: 30,
               ),
-              const Text(
-                "Full Name",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Color(0xFF343A40)),
+              BigText(
+                text: "Full Name",
+                size: 16,
               ),
               CustomTextField(
                 hintText: "Enter your full name",
@@ -71,12 +62,9 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "Email address",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Color(0xFF343A40)),
+              BigText(
+                text: "Email address",
+                size: 16,
               ),
               CustomTextField(
                 hintText: "Enter your email address",
@@ -87,32 +75,26 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "Password",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Color(0xFF343A40)),
+              BigText(
+                text: "Password",
+                size: 16,
               ),
               CustomTextField(
                 hintText: "Enter your password",
-                textEditingController: emailTextEditingController,
+                textEditingController: passwordTextEditingController,
                 isObsecre: false,
                 enabled: true,
               ),
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "Confirm Password",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                    color: Color(0xFF343A40)),
+              BigText(
+                text: "Confirm Password",
+                size: 16,
               ),
               CustomTextField(
                 hintText: "Re-enter your password",
-                textEditingController: emailTextEditingController,
+                textEditingController: confirmPasswordTextEditingController,
                 isObsecre: false,
                 enabled: true,
               ),
@@ -123,17 +105,16 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                   child: CustomButton(
                 text: "Sign Up",
                 onPressed: () {
-                  Get.to(() => MainScreen());
+                  Get.to(() => const MainScreen());
                 },
               )),
               const SizedBox(
-                height: 20,
+                height: 10,
               ),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 SmallText(
                   text: "Already have an account?",
-                  size: 16,
-                  color: Color(0xFF6C757D),
+                  size: 14,
                 ),
                 GestureDetector(
                   onTap: () {
@@ -141,8 +122,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                   },
                   child: SmallText(
                     text: "Log In",
-                    size: 16,
-                    color: Color(0xFF656D4A),
+                    size: 14,
                   ),
                 )
               ]),

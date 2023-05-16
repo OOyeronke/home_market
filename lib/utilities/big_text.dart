@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class BigText extends StatelessWidget {
   final Color? color;
   final String text;
-  double size;
-  TextOverflow overFlow;
+  final double size;
+  final TextOverflow overFlow;
 
   BigText(
       {super.key,
       this.overFlow = TextOverflow.ellipsis,
       this.size = 35,
-      this.color = Colors.black,
+      this.color = const Color(0xFF343A40),
       required this.text});
 
   @override
@@ -19,11 +20,16 @@ class BigText extends StatelessWidget {
       text,
       maxLines: 1,
       overflow: overFlow,
-      style: TextStyle(
-          fontSize: size,
-          fontFamily: 'Roboto',
-          color: color,
-          fontWeight: FontWeight.bold),
+      style: GoogleFonts.inter(
+        color: color,
+        fontSize: size,
+        fontWeight: FontWeight.bold,
+      ),
+      // TextStyle(
+      //       fontSize: size,
+      //       fontFamily: 'Roboto',
+      //       color: color,
+      //       fontWeight: FontWeight.bold),
     );
   }
 }

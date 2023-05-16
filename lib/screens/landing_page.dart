@@ -20,7 +20,7 @@ class _LandingState extends State<Landing> {
     SliderPage(
       title: "Buy your Groceries",
       description:
-          "Shop from the thousands of groceries, friuts, beef, livestock,",
+          "Shop from the thousands of groceries, fruits, beef, livestock,",
       image: "assets/images/onboarding_screen1.png",
       description2: 'vegetables, beverages, e.t.c in our stores with ease',
       title2: ' with ease',
@@ -95,16 +95,15 @@ class _LandingState extends State<Landing> {
                 children: [
                   SmallText(
                     text: "Already have an account?",
-                    size: 16,
-                    color: Color(0xFF6C757D),
+                    size: 14,
                   ),
                   GestureDetector(
                     onTap: () {
                       Get.to(() => LogIn());
                     },
                     child: SmallText(
-                      text: "Log in",
-                      size: 16,
+                      text: "Log In",
+                      size: 14,
                       color: Color(0xFF656D4A),
                     ),
                   )

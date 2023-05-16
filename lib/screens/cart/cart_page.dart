@@ -18,15 +18,27 @@ class CartPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppIcon(
-              icon: Icons.arrow_back,
-              backgroundColor: Colors.white,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: AppIcon(
+                icon: Icons.arrow_back_ios,
+                iconSize: 18,
+              ),
             ),
             Center(
               child: Column(
                 children: [
-                  BigText(text: "Cart"),
-                  SmallText(text: "3 items in the cart"),
+                  BigText(
+                    text: "Cart",
+                    color: const Color(0xFF6C757D),
+                  ),
+                  SmallText(
+                    text: "3 items in the cart",
+                    color: const Color(0xFFADB5BD),
+                    size: 14,
+                  ),
                 ],
               ),
             ),
@@ -34,11 +46,11 @@ class CartPage extends StatelessWidget {
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.all(25),
-              width: 300,
+              padding: const EdgeInsets.all(20),
+              width: 350,
               height: 100,
               decoration: BoxDecoration(
-                color: Colors.brown,
+                color: const Color(0xFF936639),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Center(
@@ -48,6 +60,9 @@ class CartPage extends StatelessWidget {
                       text: "Tap to apply discount",
                       size: 20,
                       color: Colors.white,
+                    ),
+                    const SizedBox(
+                      height: 10,
                     ),
                     SmallText(
                       text: "You get 15% off all orders that are above \$200",
@@ -63,7 +78,7 @@ class CartPage extends StatelessWidget {
             ),
             Container(
                 padding: EdgeInsets.all(10),
-                width: 300,
+                width: 350,
                 height: 100,
                 decoration: BoxDecoration(
                     boxShadow: const [
@@ -76,7 +91,7 @@ class CartPage extends StatelessWidget {
                     color: Colors.white),
                 child: Row(
                   children: [
-                    Image.asset("assets/images/lettuce2.png"),
+                    Image.asset("assets/images/lettu.png"),
                     const SizedBox(
                       width: 20,
                     ),
@@ -86,11 +101,14 @@ class CartPage extends StatelessWidget {
                         BigText(
                           text: "Lettuce",
                           size: 20,
+                          color: const Color(0xFF6C757D),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
-                        SmallText(text: "\$21.99"),
+                        SmallText(
+                          text: "\$21.99",
+                        ),
                         const SizedBox(
                           height: 5,
                         ),
@@ -98,35 +116,40 @@ class CartPage extends StatelessWidget {
                           children: [
                             AppIcon(
                               icon: Icons.remove,
-                              backgroundColor: Colors.grey,
-                              size: 22,
+                              backgroundColor: const Color(0xFFC2C5AA),
+                              iconColor: const Color(0xFF414833),
+                              size: 26,
                             ),
                             const SizedBox(
-                              width: 5,
+                              width: 10,
                             ),
-                            SmallText(text: "1"),
-                            const SizedBox(
-                              width: 5,
+                            // Text("1",),
+                            BigText(
+                              text: "1",
+                              color: const Color(0xFF000000),
+                              size: 14,
                             ),
+                            const SizedBox(width: 10),
                             AppIcon(
                               icon: Icons.add,
-                              backgroundColor: Colors.black,
-                              size: 22,
+                              backgroundColor: const Color(0xFF656D4A),
+                              iconColor: const Color(0xFFC2C5AA),
+                              size: 26,
                             ),
                           ],
                         )
                       ],
                     ),
                     const SizedBox(
-                      width: 60,
+                      width: 100,
                     ),
                     AppIcon(
-                      icon: Icons.cancel,
+                      icon: Icons.clear,
                       backgroundColor: Colors.white,
                     ),
                   ],
                 )),
-            SizedBox(
+            const SizedBox(
               height: 250,
             ),
             Row(
@@ -138,10 +161,12 @@ class CartPage extends StatelessWidget {
                     SmallText(
                       text: "Total",
                       size: 14,
+                      color: const Color(0xFFADB5BD),
                     ),
                     BigText(
                       text: "\$1500",
                       size: 20,
+                      color: const Color(0xFF6C757D),
                     ),
                   ],
                 ),
@@ -149,8 +174,9 @@ class CartPage extends StatelessWidget {
                     text: "Checkout",
                     width: 200,
                     height: 60,
+                    textsize: 20,
                     onPressed: () {
-                      Get.to(() => PaymentPage());
+                      Get.to(() => const PaymentPage());
                     })
               ],
             )

@@ -7,13 +7,12 @@ import '../../utilities/big_text.dart';
 import '../../utilities/small_text.dart';
 
 class OrderSuccessScreen extends StatelessWidget {
-  OrderSuccessScreen({
+  const OrderSuccessScreen({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    //double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.only(bottom: 20),
@@ -54,7 +53,7 @@ class OrderSuccessScreen extends StatelessWidget {
                           children: [
                             BigText(
                               text: "Order Placed",
-                              color: Color(0xFF656D4A),
+                              color: const Color(0xFF656D4A),
                             ),
                             BigText(
                               text: "Successfully",
@@ -70,7 +69,10 @@ class OrderSuccessScreen extends StatelessWidget {
                               height: 20,
                             ),
                             CustomButton(
+                              width: 300,
+                              height: 65,
                               text: "Track your order",
+                              textsize: 24,
                               onPressed: () {
                                 Get.to(() => LogIn());
                               },

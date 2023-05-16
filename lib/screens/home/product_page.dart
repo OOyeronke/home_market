@@ -113,6 +113,9 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:home_market/utilities/big_text.dart';
+import 'package:home_market/utilities/small_text.dart';
 
 class ProductPage extends StatelessWidget {
   final dynamic productData;
@@ -148,29 +151,27 @@ class ProductPage extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
-                      blurRadius: 3.0,
+                      blurRadius: 0.5,
                       color: Colors.black12,
                     ),
                   ],
                 ),
                 width: 140,
-                height: 180,
+                height: 160,
                 child: Image.asset(
                   image,
-                  height: 180,
-                  width: 200,
                   fit: BoxFit.cover,
                 ),
               ),
               Positioned(
-                  bottom: 0,
+                  bottom: 5,
                   right: 0,
                   left: 0,
                   top: 90.0,
                   child: Container(
-                    padding: EdgeInsets.only(left: 10),
+                    padding: const EdgeInsets.only(left: 10),
                     //height: 100,
                     width: 170,
                     decoration: const BoxDecoration(
@@ -184,38 +185,35 @@ class ProductPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Text(
-                          name,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                        BigText(
+                          text: name,
+                          size: 16,
                         ),
-                        Text(
-                          classf,
-                          style: const TextStyle(
-                              fontSize: 10, color: Colors.black26),
+                        SmallText(
+                          text: classf,
+                          size: 10,
+                          color: Color(0xFFADB5BD),
                         ),
                         Row(
                           children: [
                             const Icon(
                               Icons.star,
-                              color: Colors.orange,
+                              color: Color(0xFFFAA307),
                               size: 14,
                             ),
-                            Text(
-                              rating,
-                              style: const TextStyle(fontSize: 14),
+                            SmallText(
+                              text: rating,
+                              size: 14,
+                              color: const Color(0xFFADB5BD),
                             ),
                             const SizedBox(
                               width: 35,
                             ),
-                            const Text(
-                              "\$",
-                              style: TextStyle(fontSize: 14),
+                            SmallText(
+                              text: "\$" + price,
+                              size: 14,
+                              color: const Color(0xFF936639),
                             ),
-                            Text(
-                              price,
-                              style: const TextStyle(fontSize: 14),
-                            )
                           ],
                         ),
                       ],

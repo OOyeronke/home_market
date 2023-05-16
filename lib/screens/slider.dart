@@ -62,18 +62,18 @@ class SliderPage extends StatelessWidget {
                             BigText(
                               text: title,
                               color: Color(0xFF333D29),
+                              size: 35,
                             ),
                             BigText(
                               text: title2,
                               color: Color(0xFF333D29),
+                              size: 35,
                             ),
                             SmallText(
                               text: description,
-                              color: Color(0xFF6C757D),
                             ),
                             SmallText(
                               text: description2,
-                              color: Color(0xFF6C757D),
                             ),
                             const SizedBox(
                               height: 20,

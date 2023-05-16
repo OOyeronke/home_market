@@ -13,29 +13,39 @@ class PaymentPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.only(top: 50, right: 20, left: 20),
+        padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppIcon(
-              icon: Icons.arrow_back,
-              backgroundColor: Colors.white,
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).pop();
+              },
+              child: AppIcon(
+                icon: Icons.arrow_back_ios,
+                iconSize: 18,
+              ),
             ),
             Center(
                 child: BigText(
               text: "Checkout",
               size: 22,
+              color: const Color(0xFF6C757D),
             )),
+            const SizedBox(
+              height: 20,
+            ),
             SmallText(
               text: "Address",
-              size: 18,
+              size: 16,
+              color: const Color(0xFF343A40),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
               padding: const EdgeInsets.all(20),
-              width: 300,
+              width: 350,
               height: 100,
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
@@ -45,7 +55,7 @@ class PaymentPage extends StatelessWidget {
               ], borderRadius: BorderRadius.circular(20), color: Colors.white),
               child: Row(
                 children: [
-                  Icon(Icons.location_city),
+                  Icon(Icons.location_on_outlined),
                   const SizedBox(
                     width: 20,
                   ),
@@ -56,9 +66,13 @@ class PaymentPage extends StatelessWidget {
                         text: "Home",
                         size: 18,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       SmallText(
                         text: "3rd Avenue, Admiralty way Lekki, Lagos",
                         size: 10,
+                        color: const Color(0xFFADB5BD),
                       ),
                     ],
                   ),
@@ -68,27 +82,28 @@ class PaymentPage extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 210),
-              child: Column(
-                children: [
-                  SmallText(text: "Change address"),
-                ],
-              ),
-            ),
+            Container(
+                alignment: Alignment.bottomRight,
+                padding: const EdgeInsets.only(right: 20),
+                child: SmallText(
+                  text: "Change address",
+                  color: const Color(0xFFADB5BD),
+                  size: 14,
+                )),
             const SizedBox(
               height: 20,
             ),
             SmallText(
               text: "Payment Card",
-              size: 18,
+              size: 16,
+              color: const Color(0xFF343A40),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
               padding: const EdgeInsets.all(20),
-              width: 300,
+              width: 350,
               height: 100,
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
@@ -98,7 +113,7 @@ class PaymentPage extends StatelessWidget {
               ], borderRadius: BorderRadius.circular(20), color: Colors.white),
               child: Row(
                 children: [
-                  Icon(Icons.card_giftcard),
+                  Image.asset("assets/images/mastercard.png"),
                   const SizedBox(
                     width: 20,
                   ),
@@ -109,9 +124,13 @@ class PaymentPage extends StatelessWidget {
                         text: "Master Card",
                         size: 18,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       SmallText(
                         text: "**** **** 4567 5689",
                         size: 10,
+                        color: const Color(0xFFADB5BD),
                       ),
                     ],
                   ),
@@ -121,28 +140,28 @@ class PaymentPage extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 220),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  SmallText(text: "Change card"),
-                ],
-              ),
-            ),
+            Container(
+                alignment: Alignment.bottomRight,
+                padding: const EdgeInsets.only(right: 20),
+                child: SmallText(
+                  text: "Change card",
+                  color: const Color(0xFFADB5BD),
+                  size: 14,
+                )),
             const SizedBox(
               height: 20,
             ),
             SmallText(
               text: "Payment on delivery",
-              size: 18,
+              size: 16,
+              color: const Color(0xFF343A40),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
               padding: const EdgeInsets.all(20),
-              width: 300,
+              width: 350,
               height: 100,
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
@@ -164,13 +183,18 @@ class PaymentPage extends StatelessWidget {
                         text: "Pay on Delivery",
                         size: 18,
                       ),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       SmallText(
                         text: "Choose this option if you prefer to check the",
                         size: 10,
+                        color: const Color(0xFFADB5BD),
                       ),
                       SmallText(
                         text: "freshness of the groceries and py on delivery",
                         size: 10,
+                        color: const Color(0xFFADB5BD),
                       )
                     ],
                   ),
@@ -185,7 +209,10 @@ class PaymentPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SmallText(text: "Delivery Fee"),
+                  SmallText(
+                    text: "Delivery Fee",
+                    color: const Color(0xFFADB5BD),
+                  ),
                   SmallText(text: "\$5"),
                 ],
               ),
@@ -198,8 +225,15 @@ class PaymentPage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SmallText(text: "New Total"),
-                  SmallText(text: "\$15.00"),
+                  SmallText(
+                    text: "New Total",
+                    color: const Color(0xFFADB5BD),
+                  ),
+                  BigText(
+                    text: "\$15.00",
+                    color: const Color(0xFF6C757D),
+                    size: 16,
+                  ),
                 ],
               ),
             ),

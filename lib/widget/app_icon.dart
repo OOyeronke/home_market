@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 //import '../utils/dimensions.dart';
@@ -12,9 +11,9 @@ class AppIcon extends StatelessWidget {
   AppIcon({
     super.key,
     required this.icon,
-    this.backgroundColor = const Color(0xFFfcf4e4),
+    this.backgroundColor = const Color(0xFFFFFFFF),
     this.size = 40,
-    this.iconColor = const Color(0xFF756d54),
+    this.iconColor = const Color(0xFF656D4A),
     this.iconSize = 16,
   });
 

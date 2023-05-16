@@ -1,7 +1,6 @@
 //import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:home_market/screens/cart/cart_page.dart';
 import 'package:home_market/utilities/big_text.dart';
@@ -41,8 +40,6 @@ class ProductItem extends StatelessWidget {
               height: 350,
               child: Image.asset(
                 image,
-                // width: 400,
-                // height: 450,
                 fit: BoxFit.cover,
               ),
             ),
@@ -54,17 +51,24 @@ class ProductItem extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    AppIcon(
-                      icon: Icons.arrow_back,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: AppIcon(
+                        icon: Icons.arrow_back_ios,
+                        iconSize: 18,
+                      ),
                     ),
                     AppIcon(
-                      icon: Icons.heart_broken,
+                      icon: Icons.favorite_border,
+                      iconSize: 20,
                     )
                   ],
                 ))
           ]),
           Container(
-            padding: EdgeInsets.only(top: 10, right: 20, left: 20),
+            padding: const EdgeInsets.only(top: 10, right: 20, left: 20),
             child: const Column(
               children: [
                 AppColumn(
@@ -81,21 +85,19 @@ class ProductItem extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
-              padding: const EdgeInsets.only(left: 20, right: 20, top: 5),
-              // width: 290,
-              // height: 100,
+              padding: const EdgeInsets.only(left: 10, right: 20, top: 5),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BigText(
-                    text: 'Related Products',
+                  SmallText(
+                    text: "Related Products",
+                    color: const Color(0xFF343A40),
                     size: 16,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   Row(
-                    //mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Container(
                         padding: const EdgeInsets.all(20),
@@ -109,30 +111,29 @@ class ProductItem extends StatelessWidget {
                           ],
                           color: Colors.white,
                         ),
-                        width: 150,
+                        width: 160,
                         height: 80,
                         child: Center(
-                          child: Row(
-                              //mainAxisAlignment: MainAxisAlignment.center,
+                          child: Row(children: [
+                            Image.asset(image2),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
                               children: [
-                                Image.asset(image2),
-                                const SizedBox(
-                                  width: 20,
+                                SmallText(
+                                  text: text1,
+                                  size: 14,
                                 ),
-                                Column(
-                                  children: [
-                                    SmallText(
-                                      text: text1,
-                                      size: 14,
-                                    ),
-                                    const SizedBox(height: 5),
-                                    SmallText(
-                                      text: price1,
-                                      size: 14,
-                                    )
-                                  ],
-                                ),
-                              ]),
+                                const SizedBox(height: 5),
+                                SmallText(
+                                  text: price1,
+                                  size: 14,
+                                  color: const Color(0xFF936639),
+                                )
+                              ],
+                            ),
+                          ]),
                         ),
                       ),
                       const SizedBox(
@@ -150,31 +151,30 @@ class ProductItem extends StatelessWidget {
                           ],
                           color: Colors.white,
                         ),
-                        width: 150,
+                        width: 160,
                         height: 80,
-                        child: Row(
-                            //mainAxisAlignment: MainAxisAlignment.center,
+                        child: Row(children: [
+                          Image.asset(image3),
+                          const SizedBox(
+                            width: 20,
+                          ),
+                          Column(
                             children: [
-                              Image.asset(image3),
+                              SmallText(
+                                text: text2,
+                                size: 14,
+                              ),
                               const SizedBox(
-                                width: 20,
+                                height: 5,
                               ),
-                              Column(
-                                children: [
-                                  SmallText(
-                                    text: text2,
-                                    size: 14,
-                                  ),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  SmallText(
-                                    text: price2,
-                                    size: 14,
-                                  )
-                                ],
-                              ),
-                            ]),
+                              SmallText(
+                                text: price2,
+                                size: 14,
+                                color: const Color(0xFF936639),
+                              )
+                            ],
+                          ),
+                        ]),
                       )
                     ],
                   ),
@@ -209,10 +209,12 @@ class ProductItem extends StatelessWidget {
                           children: [
                             SmallText(
                               text: "Price",
+                              color: const Color(0xFFADB5BD),
+                              size: 14,
                             ),
-                            SmallText(
-                              text: "dfvsdfjsdh",
-                              size: 16,
+                            BigText(
+                              text: "\$10.99",
+                              size: 20,
                             ),
                           ]),
                       const SizedBox(
@@ -220,10 +222,11 @@ class ProductItem extends StatelessWidget {
                       ),
                       CustomButton(
                           height: 45,
-                          width: 200,
+                          width: 190,
                           text: "Add to Cart",
+                          textsize: 16,
                           onPressed: () {
-                            Get.to(() => CartPage());
+                            Get.to(() => const CartPage());
                           })
                     ],
                   ),

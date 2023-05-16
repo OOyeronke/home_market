@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:home_market/screens/home/main_screen.dart';
 import 'package:home_market/screens/logging_screens.dart/seller_sign_up_page.dart';
 import 'package:home_market/screens/logging_screens.dart/sign_up_screen.dart';
 import 'package:home_market/utilities/big_text.dart';
@@ -31,7 +32,7 @@ class _LogInState extends State<LogIn> {
                 children: [
                   BigText(
                     text: "Hello Again!",
-                    color: Color(0xFF656D4A),
+                    color: const Color(0xFF656D4A),
                   ),
                   Image.asset("assets/images/fresh-romaine-lettuce-white 4.png")
                 ],
@@ -39,7 +40,6 @@ class _LogInState extends State<LogIn> {
               SmallText(
                 text: "Welcome back, we have missed you",
                 size: 14,
-                color: Color(0xFF6C757D),
               ),
               const SizedBox(
                 height: 40,
@@ -47,13 +47,17 @@ class _LogInState extends State<LogIn> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    "Enter address",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF343A40)),
+                  BigText(
+                    text: "Email address",
+                    size: 16,
                   ),
+                  // const Text(
+                  //   "Enter address",
+                  //   style: TextStyle(
+                  //       fontWeight: FontWeight.bold,
+                  //       fontSize: 16,
+                  //       color: Color(0xFF343A40)),
+                  // ),
                   CustomTextField(
                     hintText: "Enter your email address",
                     textEditingController: emailTextEditingController,
@@ -63,12 +67,9 @@ class _LogInState extends State<LogIn> {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text(
-                    "Password",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                        color: Color(0xFF343A40)),
+                  BigText(
+                    text: "Password",
+                    size: 16,
                   ),
                   CustomTextField(
                     hintText: "Enter your password",
@@ -79,9 +80,10 @@ class _LogInState extends State<LogIn> {
                   Container(
                       alignment: Alignment.bottomRight,
                       padding: const EdgeInsets.only(right: 20),
-                      child: const Text(
-                        "Forgot your password?",
-                        style: TextStyle(color: Color(0xFF656D4A)),
+                      child: SmallText(
+                        text: "Forgot your password?",
+                        color: Color(0xFF656D4A),
+                        size: 13,
                       )),
                   const SizedBox(
                     height: 10,
@@ -89,8 +91,10 @@ class _LogInState extends State<LogIn> {
                   Center(
                       child: CustomButton(
                     text: "Log In",
+                    height: 50,
+                    width: 400,
                     onPressed: () {
-                      SellerSignUpPage();
+                      Get.to(() => MainScreen());
                     },
                   )),
                   const SizedBox(
@@ -101,8 +105,8 @@ class _LogInState extends State<LogIn> {
                     children: [
                       SmallText(
                         text: "Don't have an account yet?",
-                        size: 16,
-                        color: Color(0xFF6C757D),
+                        size: 14,
+                        // color: Color(0xFF6C757D),
                       ),
                       GestureDetector(
                         onTap: () {
@@ -110,7 +114,7 @@ class _LogInState extends State<LogIn> {
                         },
                         child: SmallText(
                           text: "Sign Up",
-                          size: 16,
+                          size: 14,
                           color: Color(0xFF656D4A),
                         ),
                       )
@@ -119,15 +123,16 @@ class _LogInState extends State<LogIn> {
                   const SizedBox(
                     height: 40,
                   ),
-                  const Row(children: [
-                    Expanded(
+                  Row(children: [
+                    const Expanded(
                       child: Divider(),
                     ),
-                    Text(
-                      "  Or Login with Biometrics  ",
-                      style: TextStyle(color: Color(0xFF6C757D)),
-                    ),
-                    Expanded(
+                    SmallText(text: "  Or Login with Biometrics  "),
+                    // Text(
+                    //   "  Or Login with Biometrics  ",
+                    //   style: TextStyle(color: Color(0xFF6C757D)),
+                    // ),
+                    const Expanded(
                       child: Divider(),
                     ),
                   ]),
