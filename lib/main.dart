@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_market/screens/home/home_page.dart';
-import 'package:home_market/screens/home/main_screen.dart';
-import 'package:home_market/screens/home/product_page.dart';
+import 'package:home_market/screens/account/profile_page.dart';
 import 'package:home_market/screens/landing_page.dart';
-import 'package:home_market/screens/logging_screens.dart/login_page.dart';
-import 'package:home_market/screens/products/products_item.dart';
-import 'package:home_market/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       home: Landing(),
+      //home: ProfilePage(),
       // home: ProductItem(
       //   image: 'assets/images/red_tomato2.png',
       //   image2: 'assets/images/lettuce2.png',

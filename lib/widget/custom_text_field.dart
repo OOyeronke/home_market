@@ -3,11 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController? textEditingController;
-  final IconData? iconData, iconData2;
+  final IconData? iconData, iconData2, suffIcon1, suffIcon2;
   final String? hintText;
   bool? isObsecre = true;
   bool? enabled = true;
   final Function()? onPressed;
+  final validate;
+  //String Function(String?)? onSave;
   CustomTextField({
     super.key,
     this.textEditingController,
@@ -17,6 +19,10 @@ class CustomTextField extends StatelessWidget {
     this.enabled,
     this.onPressed,
     this.iconData2,
+    this.suffIcon1,
+    this.suffIcon2,
+    this.validate,
+    //this.onSave,
   });
 
   @override
@@ -36,6 +42,8 @@ class CustomTextField extends StatelessWidget {
         enabled: enabled,
         controller: textEditingController,
         obscureText: isObsecre!,
+        validator: validate,
+        //onSaved: onSave,
         //textAlign: TextAlign.center,
         cursorColor: Theme.of(context).primaryColor,
         decoration: InputDecoration(
@@ -45,7 +53,7 @@ class CustomTextField extends StatelessWidget {
             ),
             suffixIcon: GestureDetector(
               onTap: onPressed,
-              child: Icon(iconData, color: const Color(0xFFADB5BD)),
+              child: Icon(isObsecre! ? suffIcon1 : suffIcon2),
             ),
             hintText: hintText,
             hintStyle: GoogleFonts.inter(

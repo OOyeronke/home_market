@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_market/screens/home/main_screen.dart';
-import 'package:home_market/screens/logging_screens.dart/seller_sign_up_page.dart';
 import 'package:home_market/screens/logging_screens.dart/sign_up_screen.dart';
 import 'package:home_market/utilities/big_text.dart';
 import 'package:home_market/utilities/small_text.dart';
@@ -18,6 +17,14 @@ class LogIn extends StatefulWidget {
 class _LogInState extends State<LogIn> {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+  bool _isHidden = true;
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,8 +81,13 @@ class _LogInState extends State<LogIn> {
                   CustomTextField(
                     hintText: "Enter your password",
                     textEditingController: passwordTextEditingController,
-                    isObsecre: false,
+                    isObsecre: _isHidden,
                     enabled: true,
+                    suffIcon1: Icons.visibility,
+                    suffIcon2: Icons.visibility_off,
+                    onPressed: () {
+                      _togglePasswordView();
+                    },
                   ),
                   Container(
                       alignment: Alignment.bottomRight,

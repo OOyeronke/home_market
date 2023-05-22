@@ -6,8 +6,20 @@ import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/app_icon.dart';
 import 'package:home_market/widget/button.dart';
 
-class PaymentPage extends StatelessWidget {
+enum CheckoutOptions { cardPayment, paymentOnDelivery }
+
+enum DeliveryAddress { home }
+
+class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});
+
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
+  CheckoutOptions? _checkoutOptions;
+  DeliveryAddress? _deliveryAddress;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +88,23 @@ class PaymentPage extends StatelessWidget {
                       ),
                     ],
                   ),
+                  // const SizedBox(
+                  //   width: 5,
+                  // ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Radio<DeliveryAddress>(
+                      value: DeliveryAddress.home,
+                      groupValue: _deliveryAddress,
+                      fillColor: MaterialStateColor.resolveWith(
+                          (states) => Color(0xFF656D4A)),
+                      onChanged: (val) {
+                        setState(() {
+                          _deliveryAddress = val;
+                        });
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -134,6 +163,23 @@ class PaymentPage extends StatelessWidget {
                       ),
                     ],
                   ),
+                  const SizedBox(
+                    width: 60,
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Radio<CheckoutOptions>(
+                      value: CheckoutOptions.cardPayment,
+                      groupValue: _checkoutOptions,
+                      fillColor: MaterialStateColor.resolveWith(
+                          (states) => Color(0xFF656D4A)),
+                      onChanged: (val) {
+                        setState(() {
+                          _checkoutOptions = val;
+                        });
+                      },
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -160,7 +206,8 @@ class PaymentPage extends StatelessWidget {
               height: 10,
             ),
             Container(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.only(
+                  left: 10, right: 5, top: 20, bottom: 20),
               width: 350,
               height: 100,
               decoration: BoxDecoration(boxShadow: const [
@@ -174,7 +221,7 @@ class PaymentPage extends StatelessWidget {
                 children: [
                   Icon(Icons.shopping_bag),
                   const SizedBox(
-                    width: 20,
+                    width: 10,
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -192,11 +239,25 @@ class PaymentPage extends StatelessWidget {
                         color: const Color(0xFFADB5BD),
                       ),
                       SmallText(
-                        text: "freshness of the groceries and py on delivery",
+                        text: "freshness of the groceries and pay on delivery",
                         size: 10,
                         color: const Color(0xFFADB5BD),
-                      )
+                      ),
                     ],
+                  ),
+                  Container(
+                    alignment: Alignment.centerRight,
+                    child: Radio<CheckoutOptions>(
+                      value: CheckoutOptions.paymentOnDelivery,
+                      groupValue: _checkoutOptions,
+                      fillColor: MaterialStateColor.resolveWith(
+                          (states) => Color(0xFF656D4A)),
+                      onChanged: (val) {
+                        setState(() {
+                          _checkoutOptions = val;
+                        });
+                      },
+                    ),
                   ),
                 ],
               ),

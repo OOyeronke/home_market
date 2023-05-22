@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:home_market/screens/home/main_screen.dart';
 import 'package:home_market/screens/logging_screens.dart/login_page.dart';
@@ -7,6 +8,7 @@ import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/custom_text_field.dart';
 
 import '../../widget/button.dart';
+import '../../widget/loading_dialog_widget.dart';
 
 class BuyerSignUpPage extends StatefulWidget {
   const BuyerSignUpPage({super.key});
@@ -16,11 +18,59 @@ class BuyerSignUpPage extends StatefulWidget {
 }
 
 class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
-  TextEditingController emailTextEditingController = TextEditingController();
-  TextEditingController passwordTextEditingController = TextEditingController();
-  TextEditingController nameTextEditingController = TextEditingController();
-  TextEditingController confirmPasswordTextEditingController =
-      TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController confirmPassword = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  formValidation() {
+    if (name.text.isEmpty) {
+      Fluttertoast.showToast(msg: "Type in your name");
+    } else if (email.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Type in your email address",
+      );
+    } else if (password.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Type in your password",
+      );
+    } else if (password.text.length < 6) {
+      Fluttertoast.showToast(
+        msg: "Password cannot be less than six characters",
+      );
+    } else if (confirmPassword.text.isEmpty) {
+      Fluttertoast.showToast(
+        msg: "Confirm Password",
+      );
+    } else if (confirmPassword.text.length < 6) {
+      Fluttertoast.showToast(
+        msg: "Password cannot be less than six characters",
+      );
+    } else if (password.text != confirmPassword.text) {
+      Fluttertoast.showToast(
+        msg: "Password and Confirm Password do not match",
+      );
+    } else {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const MainScreen()));
+    }
+  }
+
+  bool _isHidden = true;
+
+  void _togglePasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+
+  void _toggleConfirmPasswordView() {
+    setState(() {
+      _isHidden = !_isHidden;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,55 +99,72 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
               const SizedBox(
                 height: 30,
               ),
-              BigText(
-                text: "Full Name",
-                size: 16,
-              ),
-              CustomTextField(
-                hintText: "Enter your full name",
-                textEditingController: nameTextEditingController,
-                isObsecre: false,
-                enabled: true,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              BigText(
-                text: "Email address",
-                size: 16,
-              ),
-              CustomTextField(
-                hintText: "Enter your email address",
-                textEditingController: emailTextEditingController,
-                isObsecre: false,
-                enabled: true,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              BigText(
-                text: "Password",
-                size: 16,
-              ),
-              CustomTextField(
-                hintText: "Enter your password",
-                textEditingController: passwordTextEditingController,
-                isObsecre: false,
-                enabled: true,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              BigText(
-                text: "Confirm Password",
-                size: 16,
-              ),
-              CustomTextField(
-                hintText: "Re-enter your password",
-                textEditingController: confirmPasswordTextEditingController,
-                isObsecre: false,
-                enabled: true,
-              ),
+              Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      BigText(
+                        text: "Full Name",
+                        size: 16,
+                      ),
+                      CustomTextField(
+                        hintText: "Enter your full name",
+                        textEditingController: name,
+                        isObsecre: false,
+                        enabled: true,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      BigText(
+                        text: "Email address",
+                        size: 16,
+                      ),
+                      CustomTextField(
+                        hintText: "Enter your email address",
+                        textEditingController: email,
+                        isObsecre: false,
+                        enabled: true,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      BigText(
+                        text: "Password",
+                        size: 16,
+                      ),
+                      CustomTextField(
+                        hintText: "Enter your password",
+                        textEditingController: password,
+                        isObsecre: _isHidden,
+                        enabled: true,
+                        suffIcon1: Icons.visibility,
+                        suffIcon2: Icons.visibility_off,
+                        onPressed: () {
+                          _togglePasswordView();
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      BigText(
+                        text: "Confirm Password",
+                        size: 16,
+                      ),
+                      CustomTextField(
+                        hintText: "Re-enter your password",
+                        textEditingController: confirmPassword,
+                        isObsecre: _isHidden,
+                        enabled: true,
+                        suffIcon1: Icons.visibility,
+                        suffIcon2: Icons.visibility_off,
+                        onPressed: () {
+                          _toggleConfirmPasswordView();
+                        },
+                      ),
+                    ],
+                  )),
               Center(
                 child: Image.asset("assets/images/lettuce_down_center.png"),
               ),
@@ -105,7 +172,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                   child: CustomButton(
                 text: "Sign Up",
                 onPressed: () {
-                  Get.to(() => const MainScreen());
+                  formValidation();
                 },
               )),
               const SizedBox(
