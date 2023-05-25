@@ -1,35 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../widget/dimensions.dart';
+import 'colors.dart';
+
 class BigText extends StatelessWidget {
   final Color? color;
   final String text;
   final double size;
-  final TextOverflow overFlow;
+  final TextAlign? textAlign;
 
-  BigText(
-      {super.key,
-      this.overFlow = TextOverflow.ellipsis,
-      this.size = 35,
-      this.color = const Color(0xFF343A40),
-      required this.text});
+  const BigText({
+    super.key,
+    this.size = 35,
+    this.color = AppColors.textColor,
+    required this.text,
+    this.textAlign,
+  });
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Text(
       text,
-      maxLines: 1,
-      overflow: overFlow,
+      softWrap: true,
+      textAlign: textAlign,
       style: GoogleFonts.inter(
         color: color,
         fontSize: size,
         fontWeight: FontWeight.bold,
       ),
-      // TextStyle(
-      //       fontSize: size,
-      //       fontFamily: 'Roboto',
-      //       color: color,
-      //       fontWeight: FontWeight.bold),
     );
   }
 }

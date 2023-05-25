@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utilities/colors.dart';
+import 'dimensions.dart';
+
 class CustomButton extends StatelessWidget {
   final Color? color;
   final double? textsize;
@@ -11,13 +14,13 @@ class CustomButton extends StatelessWidget {
   final double? height;
   final Function() onPressed;
 
-  const CustomButton({
+  CustomButton({
     super.key,
-    this.color = const Color(0xFF656D4A),
+    this.color = AppColors.iconColor1,
     required this.text,
     required this.onPressed,
-    this.width = 270,
-    this.height = 45,
+    this.width,
+    this.height,
     this.textcolor = Colors.white,
     this.bordercolor,
     this.textsize = 22,
@@ -25,12 +28,16 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Container(
       height: height,
       width: width,
-      padding: const EdgeInsets.only(left: 40, right: 40),
+      padding: EdgeInsets.only(
+        left: Dimensions.screenWidth * 0.1,
+        right: Dimensions.screenWidth * 0.1,
+      ),
       decoration: BoxDecoration(
-        border: Border.all(color: const Color(0xFF656D4A)),
+        border: Border.all(color: AppColors.iconColor1),
         borderRadius: BorderRadius.circular(10.0),
         color: color,
       ),

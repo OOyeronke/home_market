@@ -7,6 +7,8 @@ import 'package:home_market/screens/home/home_page.dart';
 
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
+import '../../utilities/colors.dart';
+
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
@@ -17,12 +19,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
   late PersistentTabController _controller;
-  // List pages = [
-  //   MainFoodpage(),
-  //   SignUpScreen(),
-  //   CartHistory(),
-  //   AccountScreen(),
-  // ];
 
   void onTapNav(int index) {
     setState(() {
@@ -48,71 +44,33 @@ class _MainScreenState extends State<MainScreen> {
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: Icon(
+        icon: const Icon(
           CupertinoIcons.home,
         ),
         title: "Home",
-        activeColorPrimary: Color(0xFF656D4A),
+        activeColorPrimary: AppColors.iconColor1,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.heart),
+        icon: const Icon(CupertinoIcons.heart),
         title: ("Favorite"),
-        activeColorPrimary: Color(0xFF656D4A),
+        activeColorPrimary: AppColors.iconColor1,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.cart_fill),
+        icon: const Icon(CupertinoIcons.cart_fill),
         title: ("Cart"),
-        activeColorPrimary: Color(0xFF656D4A),
+        activeColorPrimary: AppColors.iconColor1,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(CupertinoIcons.person),
+        icon: const Icon(CupertinoIcons.person),
         title: ("Profile"),
-        activeColorPrimary: Color(0xFF656D4A),
+        activeColorPrimary: AppColors.iconColor1,
         inactiveColorPrimary: CupertinoColors.systemGrey,
       ),
     ];
   }
-
-  // @override
-  // Widget build(BuildContext context) {
-  //   return Scaffold(
-  //     body: pages[_selectedIndex],
-  //     bottomNavigationBar: BottomNavigationBar(
-  //         selectedItemColor: Colors.blueAccent,
-  //         unselectedItemColor: Colors.amberAccent,
-  //         showSelectedLabels: false,
-  //         showUnselectedLabels: false,
-  //         selectedFontSize: 0.0,
-  //         unselectedFontSize: 0.0,
-  //         currentIndex: _selectedIndex,
-  //         onTap: onTapNav,
-  //         items: const [
-  //           BottomNavigationBarItem(
-  //               icon: Icon(
-  //                 Icons.home_outlined,
-  //               ),
-  //               label: "home"),
-  //           BottomNavigationBarItem(
-  //               icon: Icon(
-  //                 Icons.archive,
-  //               ),
-  //               label: "history"),
-  //           BottomNavigationBarItem(
-  //               icon: Icon(
-  //                 Icons.shopping_cart,
-  //               ),
-  //               label: "cart"),
-  //           BottomNavigationBarItem(
-  //               icon: Icon(
-  //                 Icons.person,
-  //               ),
-  //               label: "me"),
-  //         ]),
-  //   );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -122,32 +80,27 @@ class _MainScreenState extends State<MainScreen> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.white, // Default is Colors.white.
-      handleAndroidBackButtonPress: true, // Default is true.
-      resizeToAvoidBottomInset:
-          true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
-      stateManagement: true, // Default is true.
-      hideNavigationBarWhenKeyboardShows:
-          true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
+      backgroundColor: Colors.white,
+      handleAndroidBackButtonPress: true,
+      resizeToAvoidBottomInset: true,
+      stateManagement: true,
+      hideNavigationBarWhenKeyboardShows: true,
       decoration: NavBarDecoration(
         borderRadius: BorderRadius.circular(10.0),
         colorBehindNavBar: Colors.white,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
-      itemAnimationProperties: ItemAnimationProperties(
-        // Navigation Bar's items animation properties.
+      itemAnimationProperties: const ItemAnimationProperties(
         duration: Duration(milliseconds: 200),
         curve: Curves.ease,
       ),
-      screenTransitionAnimation: ScreenTransitionAnimation(
-        // Screen transition animation on change of selected tab.
+      screenTransitionAnimation: const ScreenTransitionAnimation(
         animateTabTransition: true,
         curve: Curves.ease,
         duration: Duration(milliseconds: 200),
       ),
-      navBarStyle:
-          NavBarStyle.style5, // Choose the nav bar style with this property.
+      navBarStyle: NavBarStyle.style5,
     );
   }
 }

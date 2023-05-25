@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../utilities/colors.dart';
+import 'dimensions.dart';
+
 class CustomTextField extends StatelessWidget {
   final TextEditingController? textEditingController;
   final IconData? iconData, iconData2, suffIcon1, suffIcon2;
@@ -9,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   bool? enabled = true;
   final Function()? onPressed;
   final validate;
-  //String Function(String?)? onSave;
+
   CustomTextField({
     super.key,
     this.textEditingController,
@@ -22,29 +25,37 @@ class CustomTextField extends StatelessWidget {
     this.suffIcon1,
     this.suffIcon2,
     this.validate,
-    //this.onSave,
   });
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Container(
-      height: 60,
+      height: Dimensions.screenHeight * 0.075,
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border.all(color: Color(0xFFADB5BD), width: 2),
+        border: Border.all(color: AppColors.grey, width: 2),
         borderRadius: const BorderRadius.all(
           Radius.circular(20),
         ),
       ),
-      padding: const EdgeInsets.all(8.0),
-      margin: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.only(
+        top: Dimensions.screenHeight * 0.005,
+        bottom: Dimensions.screenHeight * 0.005,
+        left: Dimensions.screenHeight * 0.005,
+        right: Dimensions.screenHeight * 0.005,
+      ),
+      margin: EdgeInsets.only(
+        top: Dimensions.screenHeight * 0.005,
+        bottom: Dimensions.screenHeight * 0.005,
+        left: Dimensions.screenHeight * 0.005,
+        right: Dimensions.screenHeight * 0.005,
+      ),
       child: TextFormField(
         enabled: enabled,
         controller: textEditingController,
         obscureText: isObsecre!,
         validator: validate,
-        //onSaved: onSave,
-        //textAlign: TextAlign.center,
         cursorColor: Theme.of(context).primaryColor,
         decoration: InputDecoration(
             border: InputBorder.none,
@@ -57,7 +68,7 @@ class CustomTextField extends StatelessWidget {
             ),
             hintText: hintText,
             hintStyle: GoogleFonts.inter(
-              color: const Color(0xFFADB5BD),
+              color: AppColors.grey,
             )),
       ),
     );

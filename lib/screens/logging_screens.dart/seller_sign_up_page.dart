@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:home_market/screens/home/main_screen.dart';
+import 'package:home_market/utilities/colors.dart';
 import '../../utilities/big_text.dart';
 import '../../utilities/small_text.dart';
 import '../../widget/button.dart';
 import '../../widget/custom_text_field.dart';
+import '../../widget/dimensions.dart';
 import 'login_page.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -109,9 +111,14 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 40.0, left: 20, right: 10),
+        padding: EdgeInsets.only(
+          top: Dimensions.screenHeight * 0.05,
+          left: Dimensions.screenWidth * 0.05,
+          right: Dimensions.screenWidth * 0.05,
+        ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,9 +126,9 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BigText(
+                  const BigText(
                     text: "Sign Up",
-                    color: Color(0xFF656D4A),
+                    color: AppColors.iconColor1,
                   ),
                   Image.asset(
                     "assets/images/lettuce_side.png",
@@ -129,18 +136,18 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                   ),
                 ],
               ),
-              SmallText(
+              const SmallText(
                 text: "Welcome, fill in your details to start shopping",
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: Dimensions.screenHeight * 0.02,
               ),
               Form(
                   key: _formKey,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      BigText(
+                      const BigText(
                         text: "Full Name",
                         size: 16,
                       ),
@@ -150,10 +157,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                         isObsecre: false,
                         enabled: true,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: Dimensions.screenHeight * 0.02,
                       ),
-                      BigText(
+                      const BigText(
                         text: "Email address",
                         size: 16,
                       ),
@@ -163,10 +170,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                         isObsecre: false,
                         enabled: true,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: Dimensions.screenHeight * 0.02,
                       ),
-                      BigText(
+                      const BigText(
                         text: "Business name",
                         size: 16,
                       ),
@@ -176,10 +183,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                         isObsecre: false,
                         enabled: true,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: Dimensions.screenHeight * 0.02,
                       ),
-                      BigText(
+                      const BigText(
                         text: "Business address",
                         size: 16,
                       ),
@@ -189,10 +196,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                         isObsecre: false,
                         enabled: true,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: Dimensions.screenHeight * 0.02,
                       ),
-                      BigText(
+                      const BigText(
                         text: "Govt Id",
                         size: 16,
                       ),
@@ -219,10 +226,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       //     ),
                       //   ),
                       // ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: Dimensions.screenHeight * 0.02,
                       ),
-                      BigText(
+                      const BigText(
                         text: "Password",
                         size: 16,
                       ),
@@ -237,10 +244,10 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                           _togglePasswordView();
                         },
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: Dimensions.screenHeight * 0.02,
                       ),
-                      BigText(
+                      const BigText(
                         text: "Confirm Password",
                         size: 16,
                       ),
@@ -267,11 +274,11 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                   formValidation();
                 },
               )),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: Dimensions.screenHeight * 0.04,
               ),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                SmallText(
+                const SmallText(
                   text: "Already have an account?",
                   size: 14,
                 ),
@@ -279,15 +286,15 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                   onTap: () {
                     Get.to(() => const LogIn());
                   },
-                  child: SmallText(
+                  child: const SmallText(
                     text: "Log In",
                     size: 14,
                   ),
                 )
               ]),
-              const SizedBox(
-                height: 20,
-              )
+              SizedBox(
+                height: Dimensions.screenHeight * 0.04,
+              ),
             ],
           ),
         ),

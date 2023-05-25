@@ -6,6 +6,9 @@ import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/app_icon.dart';
 import 'package:home_market/widget/button.dart';
 
+import '../../utilities/colors.dart';
+import '../../widget/dimensions.dart';
+
 enum CheckoutOptions { cardPayment, paymentOnDelivery }
 
 enum DeliveryAddress { home }
@@ -23,9 +26,14 @@ class _PaymentPageState extends State<PaymentPage> {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+        padding: EdgeInsets.only(
+          top: Dimensions.screenHeight * 0.07,
+          right: Dimensions.screenWidth * 0.05,
+          left: Dimensions.screenWidth * 0.05,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -38,27 +46,27 @@ class _PaymentPageState extends State<PaymentPage> {
                 iconSize: 18,
               ),
             ),
-            Center(
+            const Center(
                 child: BigText(
               text: "Checkout",
               size: 22,
-              color: const Color(0xFF6C757D),
+              color: AppColors.mainColor,
             )),
-            const SizedBox(
-              height: 20,
-            ),
-            SmallText(
+            SizedBox(height: Dimensions.screenHeight * 0.03),
+            const SmallText(
               text: "Address",
               size: 16,
-              color: const Color(0xFF343A40),
+              color: AppColors.textColor,
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: Dimensions.screenHeight * 0.02),
             Container(
-              padding: const EdgeInsets.all(20),
-              width: 350,
-              height: 100,
+              padding: EdgeInsets.only(
+                  top: Dimensions.screenHeight * 0.03,
+                  right: Dimensions.screenWidth * 0.07,
+                  left: Dimensions.screenWidth * 0.07,
+                  bottom: Dimensions.screenHeight * 0.03),
+              width: Dimensions.screenWidth * 0.9,
+              height: Dimensions.screenHeight * 0.12,
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
                   blurRadius: 5.0,
@@ -67,10 +75,8 @@ class _PaymentPageState extends State<PaymentPage> {
               ], borderRadius: BorderRadius.circular(20), color: Colors.white),
               child: Row(
                 children: [
-                  Icon(Icons.location_on_outlined),
-                  const SizedBox(
-                    width: 20,
-                  ),
+                  const Icon(Icons.location_on_outlined),
+                  SizedBox(width: Dimensions.screenWidth * 0.03),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -78,26 +84,21 @@ class _PaymentPageState extends State<PaymentPage> {
                         text: "Home",
                         size: 18,
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
+                      SizedBox(height: Dimensions.screenHeight * 0.01),
                       SmallText(
                         text: "3rd Avenue, Admiralty way Lekki, Lagos",
                         size: 10,
-                        color: const Color(0xFFADB5BD),
+                        color: AppColors.grey,
                       ),
                     ],
                   ),
-                  // const SizedBox(
-                  //   width: 5,
-                  // ),
                   Container(
                     alignment: Alignment.centerRight,
                     child: Radio<DeliveryAddress>(
                       value: DeliveryAddress.home,
                       groupValue: _deliveryAddress,
                       fillColor: MaterialStateColor.resolveWith(
-                          (states) => Color(0xFF656D4A)),
+                          (states) => AppColors.green),
                       onChanged: (val) {
                         setState(() {
                           _deliveryAddress = val;
@@ -108,32 +109,31 @@ class _PaymentPageState extends State<PaymentPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
+            SizedBox(height: Dimensions.screenHeight * 0.01),
             Container(
                 alignment: Alignment.bottomRight,
-                padding: const EdgeInsets.only(right: 20),
-                child: SmallText(
+                padding: EdgeInsets.only(right: Dimensions.screenWidth * 0.03),
+                child: const SmallText(
                   text: "Change address",
-                  color: const Color(0xFFADB5BD),
+                  color: AppColors.grey,
                   size: 14,
                 )),
-            const SizedBox(
-              height: 20,
-            ),
-            SmallText(
+            SizedBox(height: Dimensions.screenHeight * 0.03),
+            const SmallText(
               text: "Payment Card",
               size: 16,
-              color: const Color(0xFF343A40),
+              color: AppColors.textColor,
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: Dimensions.screenHeight * 0.02),
             Container(
-              padding: const EdgeInsets.all(20),
-              width: 350,
-              height: 100,
+              padding: EdgeInsets.only(
+                top: Dimensions.screenHeight * 0.03,
+                right: Dimensions.screenWidth * 0.05,
+                left: Dimensions.screenWidth * 0.07,
+                bottom: Dimensions.screenHeight * 0.03,
+              ),
+              width: Dimensions.screenWidth * 0.9,
+              height: Dimensions.screenHeight * 0.12,
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
                   blurRadius: 5.0,
@@ -146,7 +146,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   const SizedBox(
                     width: 20,
                   ),
-                  Column(
+                  const Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SmallText(
@@ -159,20 +159,18 @@ class _PaymentPageState extends State<PaymentPage> {
                       SmallText(
                         text: "**** **** 4567 5689",
                         size: 10,
-                        color: const Color(0xFFADB5BD),
+                        color: AppColors.grey,
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    width: 60,
-                  ),
+                  SizedBox(width: Dimensions.screenWidth * 0.15),
                   Container(
                     alignment: Alignment.centerRight,
                     child: Radio<CheckoutOptions>(
                       value: CheckoutOptions.cardPayment,
                       groupValue: _checkoutOptions,
                       fillColor: MaterialStateColor.resolveWith(
-                          (states) => Color(0xFF656D4A)),
+                          (states) => AppColors.iconColor1),
                       onChanged: (val) {
                         setState(() {
                           _checkoutOptions = val;
@@ -183,33 +181,31 @@ class _PaymentPageState extends State<PaymentPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
+            SizedBox(height: Dimensions.screenHeight * 0.01),
             Container(
                 alignment: Alignment.bottomRight,
-                padding: const EdgeInsets.only(right: 20),
+                padding: EdgeInsets.only(right: Dimensions.screenWidth * 0.03),
                 child: SmallText(
                   text: "Change card",
-                  color: const Color(0xFFADB5BD),
+                  color: AppColors.grey,
                   size: 14,
                 )),
-            const SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: Dimensions.screenHeight * 0.03),
             SmallText(
               text: "Payment on delivery",
               size: 16,
-              color: const Color(0xFF343A40),
+              color: AppColors.textColor,
             ),
-            const SizedBox(
-              height: 10,
-            ),
+            SizedBox(height: Dimensions.screenHeight * 0.02),
             Container(
-              padding: const EdgeInsets.only(
-                  left: 10, right: 5, top: 20, bottom: 20),
-              width: 350,
-              height: 100,
+              padding: EdgeInsets.only(
+                top: Dimensions.screenHeight * 0.02,
+                right: Dimensions.screenWidth * 0.0001,
+                left: Dimensions.screenWidth * 0.05,
+                bottom: Dimensions.screenHeight * 0.02,
+              ),
+              width: Dimensions.screenWidth * 0.9,
+              height: Dimensions.screenHeight * 0.12,
               decoration: BoxDecoration(boxShadow: const [
                 BoxShadow(
                   blurRadius: 5.0,
@@ -219,29 +215,25 @@ class _PaymentPageState extends State<PaymentPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Icon(Icons.shopping_bag),
-                  const SizedBox(
-                    width: 10,
-                  ),
+                  const Icon(Icons.shopping_bag),
+                  SizedBox(width: Dimensions.screenWidth * 0.02),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SmallText(
+                      const SmallText(
                         text: "Pay on Delivery",
                         size: 18,
                       ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SmallText(
+                      SizedBox(height: Dimensions.screenHeight * 0.01),
+                      const SmallText(
                         text: "Choose this option if you prefer to check the",
                         size: 10,
-                        color: const Color(0xFFADB5BD),
+                        color: AppColors.grey,
                       ),
-                      SmallText(
+                      const SmallText(
                         text: "freshness of the groceries and pay on delivery",
                         size: 10,
-                        color: const Color(0xFFADB5BD),
+                        color: AppColors.grey,
                       ),
                     ],
                   ),
@@ -251,7 +243,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       value: CheckoutOptions.paymentOnDelivery,
                       groupValue: _checkoutOptions,
                       fillColor: MaterialStateColor.resolveWith(
-                          (states) => Color(0xFF656D4A)),
+                          (states) => AppColors.iconColor1),
                       onChanged: (val) {
                         setState(() {
                           _checkoutOptions = val;
@@ -262,51 +254,60 @@ class _PaymentPageState extends State<PaymentPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: Dimensions.screenHeight * 0.03),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Row(
+              padding: EdgeInsets.only(
+                left: Dimensions.screenWidth * 0.04,
+                right: Dimensions.screenWidth * 0.04,
+              ),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmallText(
                     text: "Delivery Fee",
-                    color: const Color(0xFFADB5BD),
+                    size: 13,
+                    color: AppColors.grey,
                   ),
-                  SmallText(text: "\$5"),
+                  SmallText(
+                    text: "\$5",
+                    size: 13,
+                  ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: Dimensions.screenHeight * 0.005,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: Row(
+              padding: EdgeInsets.only(
+                left: Dimensions.screenWidth * 0.04,
+                right: Dimensions.screenWidth * 0.04,
+              ),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SmallText(
                     text: "New Total",
-                    color: const Color(0xFFADB5BD),
+                    size: 13,
+                    color: AppColors.grey,
                   ),
                   BigText(
                     text: "\$15.00",
-                    color: const Color(0xFF6C757D),
+                    color: AppColors.mainColor,
                     size: 16,
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: Dimensions.screenHeight * 0.04,
             ),
             Center(
               child: CustomButton(
-                height: 60,
+                height: Dimensions.screenHeight * 0.075,
                 text: "Confirm Order",
                 onPressed: () {
-                  Get.to(() => OrderSuccessScreen());
+                  Get.to(() => const OrderSuccessScreen());
                 },
               ),
             ),

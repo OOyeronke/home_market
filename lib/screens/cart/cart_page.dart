@@ -4,7 +4,9 @@ import 'package:home_market/screens/account/payment_page.dart';
 import 'package:home_market/utilities/big_text.dart';
 import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/button.dart';
+import 'package:home_market/widget/dimensions.dart';
 
+import '../../utilities/colors.dart';
 import '../../widget/app_icon.dart';
 
 class CartPage extends StatelessWidget {
@@ -12,9 +14,14 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+        padding: EdgeInsets.only(
+          top: Dimensions.screenHeight * 0.07,
+          right: Dimensions.screenWidth * 0.05,
+          left: Dimensions.screenWidth * 0.05,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,33 +34,38 @@ class CartPage extends StatelessWidget {
                 iconSize: 18,
               ),
             ),
-            Center(
+            const Center(
               child: Column(
                 children: [
                   BigText(
                     text: "Cart",
-                    color: const Color(0xFF6C757D),
+                    color: AppColors.mainColor,
                   ),
                   SmallText(
                     text: "3 items in the cart",
-                    color: const Color(0xFFADB5BD),
+                    color: AppColors.grey,
                     size: 14,
                   ),
                 ],
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: Dimensions.screenHeight * 0.03,
             ),
             Container(
-              padding: const EdgeInsets.all(20),
-              width: 350,
-              height: 100,
+              padding: EdgeInsets.only(
+                top: Dimensions.screenHeight * 0.03,
+                right: Dimensions.screenWidth * 0.05,
+                left: Dimensions.screenWidth * 0.05,
+                bottom: Dimensions.screenHeight * 0.03,
+              ),
+              width: Dimensions.screenWidth * 0.9,
+              height: Dimensions.screenHeight * 0.13,
               decoration: BoxDecoration(
-                color: const Color(0xFF936639),
+                color: AppColors.brown,
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Center(
+              child: const Center(
                 child: Column(
                   children: [
                     BigText(
@@ -73,13 +85,18 @@ class CartPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: Dimensions.screenHeight * 0.02,
             ),
             Container(
-                padding: EdgeInsets.all(10),
-                width: 350,
-                height: 100,
+                padding: EdgeInsets.only(
+                  top: Dimensions.screenHeight * 0.02,
+                  right: Dimensions.screenWidth * 0.05,
+                  left: Dimensions.screenWidth * 0.05,
+                  bottom: Dimensions.screenHeight * 0.005,
+                ),
+                width: Dimensions.screenWidth * 0.9,
+                height: Dimensions.screenHeight * 0.13,
                 decoration: BoxDecoration(
                     boxShadow: const [
                       BoxShadow(
@@ -92,56 +109,59 @@ class CartPage extends StatelessWidget {
                 child: Row(
                   children: [
                     Image.asset("assets/images/lettu.png"),
-                    const SizedBox(
-                      width: 20,
+                    SizedBox(
+                      width: Dimensions.screenWidth * 0.05,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        BigText(
+                        const BigText(
                           text: "Lettuce",
                           size: 20,
-                          color: const Color(0xFF6C757D),
+                          color: AppColors.mainColor,
                         ),
-                        const SizedBox(
-                          height: 5,
+                        SizedBox(
+                          height: Dimensions.screenHeight * 0.002,
                         ),
-                        SmallText(
+                        const SmallText(
                           text: "\$21.99",
                         ),
-                        const SizedBox(
-                          height: 5,
+                        SizedBox(
+                          height: Dimensions.screenHeight * 0.002,
                         ),
                         Row(
                           children: [
                             AppIcon(
+                              width: Dimensions.screenWidth * 0.07,
+                              height: Dimensions.screenHeight * 0.05,
                               icon: Icons.remove,
-                              backgroundColor: const Color(0xFFC2C5AA),
-                              iconColor: const Color(0xFF414833),
-                              size: 26,
+                              backgroundColor: AppColors.containerColor,
+                              iconColor: AppColors.iconBackgroundColor,
                             ),
-                            const SizedBox(
-                              width: 10,
+                            SizedBox(
+                              width: Dimensions.screenWidth * 0.02,
                             ),
-                            // Text("1",),
-                            BigText(
+                            const BigText(
                               text: "1",
-                              color: const Color(0xFF000000),
+                              color: AppColors.black,
                               size: 14,
                             ),
-                            const SizedBox(width: 10),
+                            SizedBox(
+                              width: Dimensions.screenWidth * 0.02,
+                            ),
                             AppIcon(
+                              width: Dimensions.screenWidth * 0.07,
+                              height: Dimensions.screenHeight * 0.05,
                               icon: Icons.add,
-                              backgroundColor: const Color(0xFF656D4A),
-                              iconColor: const Color(0xFFC2C5AA),
-                              size: 26,
+                              backgroundColor: AppColors.iconColor1,
+                              iconColor: AppColors.containerColor,
                             ),
                           ],
                         )
                       ],
                     ),
-                    const SizedBox(
-                      width: 100,
+                    SizedBox(
+                      width: Dimensions.screenWidth * 0.3,
                     ),
                     AppIcon(
                       icon: Icons.clear,
@@ -149,31 +169,31 @@ class CartPage extends StatelessWidget {
                     ),
                   ],
                 )),
-            const SizedBox(
-              height: 250,
+            SizedBox(
+              height: Dimensions.screenHeight * 0.35,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SmallText(
                       text: "Total",
                       size: 14,
-                      color: const Color(0xFFADB5BD),
+                      color: AppColors.grey,
                     ),
                     BigText(
                       text: "\$1500",
                       size: 20,
-                      color: const Color(0xFF6C757D),
+                      color: AppColors.mainColor,
                     ),
                   ],
                 ),
                 CustomButton(
                     text: "Checkout",
-                    width: 200,
-                    height: 60,
+                    width: Dimensions.screenWidth * 0.6,
+                    height: Dimensions.screenHeight * 0.08,
                     textsize: 20,
                     onPressed: () {
                       Get.to(() => const PaymentPage());

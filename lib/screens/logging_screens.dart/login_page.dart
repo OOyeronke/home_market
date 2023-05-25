@@ -7,6 +7,9 @@ import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/button.dart';
 import 'package:home_market/widget/custom_text_field.dart';
 
+import '../../utilities/colors.dart';
+import '../../widget/dimensions.dart';
+
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
 
@@ -27,9 +30,15 @@ class _LogInState extends State<LogIn> {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
+    Dimensions().init(context);
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 60.0, left: 20, right: 10),
+        padding: EdgeInsets.only(
+          top: Dimensions.screenHeight * 0.075,
+          left: Dimensions.screenWidth * 0.05,
+          right: Dimensions.screenWidth * 0.05,
+        ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,44 +46,37 @@ class _LogInState extends State<LogIn> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  BigText(
+                  const BigText(
                     text: "Hello Again!",
-                    color: const Color(0xFF656D4A),
+                    color: AppColors.iconColor1,
                   ),
                   Image.asset("assets/images/fresh-romaine-lettuce-white 4.png")
                 ],
               ),
-              SmallText(
+              const SmallText(
                 text: "Welcome back, we have missed you",
                 size: 14,
               ),
-              const SizedBox(
-                height: 40,
+              SizedBox(
+                height: Dimensions.screenHeight * 0.04,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  BigText(
+                  const BigText(
                     text: "Email address",
                     size: 16,
                   ),
-                  // const Text(
-                  //   "Enter address",
-                  //   style: TextStyle(
-                  //       fontWeight: FontWeight.bold,
-                  //       fontSize: 16,
-                  //       color: Color(0xFF343A40)),
-                  // ),
                   CustomTextField(
                     hintText: "Enter your email address",
                     textEditingController: emailTextEditingController,
                     isObsecre: false,
                     enabled: true,
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: Dimensions.screenHeight * 0.02,
                   ),
-                  BigText(
+                  const BigText(
                     text: "Password",
                     size: 16,
                   ),
@@ -91,22 +93,23 @@ class _LogInState extends State<LogIn> {
                   ),
                   Container(
                       alignment: Alignment.bottomRight,
-                      padding: const EdgeInsets.only(right: 20),
-                      child: SmallText(
+                      padding:
+                          EdgeInsets.only(right: Dimensions.screenWidth * 0.04),
+                      child: const SmallText(
                         text: "Forgot your password?",
-                        color: Color(0xFF656D4A),
+                        color: AppColors.iconColor1,
                         size: 13,
                       )),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: Dimensions.screenHeight * 0.02,
                   ),
                   Center(
                       child: CustomButton(
                     text: "Log In",
-                    height: 50,
-                    width: 400,
+                    height: Dimensions.screenHeight * 0.08,
+                    width: Dimensions.screenHeight * 0.7,
                     onPressed: () {
-                      Get.to(() => MainScreen());
+                      Get.to(() => const MainScreen());
                     },
                   )),
                   const SizedBox(
@@ -115,50 +118,50 @@ class _LogInState extends State<LogIn> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SmallText(
+                      const SmallText(
                         text: "Don't have an account yet?",
                         size: 14,
-                        // color: Color(0xFF6C757D),
                       ),
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => SignUpScreen());
+                          Get.to(() => const SignUpScreen());
                         },
-                        child: SmallText(
+                        child: const SmallText(
                           text: "Sign Up",
                           size: 14,
-                          color: Color(0xFF656D4A),
+                          color: AppColors.iconColor1,
                         ),
                       )
                     ],
                   ),
-                  const SizedBox(
-                    height: 40,
+                  SizedBox(
+                    height: Dimensions.screenHeight * 0.04,
                   ),
-                  Row(children: [
-                    const Expanded(
+                  const Row(children: [
+                    Expanded(
                       child: Divider(),
                     ),
                     SmallText(text: "  Or Login with Biometrics  "),
-                    // Text(
-                    //   "  Or Login with Biometrics  ",
-                    //   style: TextStyle(color: Color(0xFF6C757D)),
-                    // ),
-                    const Expanded(
+                    Expanded(
                       child: Divider(),
                     ),
                   ]),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: Dimensions.screenHeight * 0.05,
                   ),
                   Center(
                     child: Container(
-                      padding: const EdgeInsets.all(5),
-                      //alignment: Alignment.bottomCenter,
-                      height: 70,
-                      width: 70,
+                      padding: EdgeInsets.only(
+                        top: Dimensions.screenHeight * 0.01,
+                        bottom: Dimensions.screenHeight * 0.01,
+                        left: Dimensions.screenWidth * 0.01,
+                        right: Dimensions.screenWidth * 0.01,
+                      ),
+                      height: Dimensions.screenHeight * 0.09,
+                      width: Dimensions.screenWidth * 0.2,
                       decoration: const BoxDecoration(
-                          shape: BoxShape.circle, color: Color(0xFFC2C5AA)),
+                          shape: BoxShape.circle,
+                          color: AppColors.containerColor),
                       child: Image.asset(
                         "assets/images/fingerprint.png",
                         fit: BoxFit.cover,

@@ -1,16 +1,10 @@
-//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:home_market/utilities/colors.dart';
 import 'package:home_market/widget/app_icon.dart';
 
 import '../utilities/big_text.dart';
 import '../utilities/small_text.dart';
-//import 'icon_and_text_widget.dart';
-// import 'package:food_delivery/widgets/small_text.dart';
-
-// import '../utils/dimensions.dart';
-// import 'big_text.dart';
-// import 'icon_and_text_widget.dart';
+import 'dimensions.dart';
 
 class AppColumn extends StatelessWidget {
   final String text;
@@ -32,7 +26,7 @@ class AppColumn extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         BigText(text: text, size: 20),
-        const SizedBox(height: 5),
+        SizedBox(height: Dimensions.screenHeight * 0.001),
         Row(
           children: [
             Wrap(
@@ -40,72 +34,63 @@ class AppColumn extends StatelessWidget {
                   5,
                   (index) => const Icon(
                         Icons.star,
-                        color: Color(0xFFFAA307),
+                        color: AppColors.orange,
                         size: 14,
                       )),
             ),
-            const SizedBox(width: 10),
+            SizedBox(width: Dimensions.screenWidth * 0.01),
             SmallText(
               text: rate,
-              color: const Color(0xFFADB5BD),
+              color: AppColors.grey,
             ),
-            const SizedBox(
-              width: 100,
-            ),
+            SizedBox(width: Dimensions.screenWidth * 0.4),
             AppIcon(
+              width: Dimensions.screenWidth * 0.07,
+              height: Dimensions.screenHeight * 0.05,
               icon: Icons.remove,
-              backgroundColor: const Color(0xFFC2C5AA),
-              iconColor: const Color(0xFF414833),
+              backgroundColor: AppColors.containerColor,
+              iconColor: AppColors.iconBackgroundColor,
             ),
-            const SizedBox(
-              width: 10,
+            SizedBox(
+              width: Dimensions.screenWidth * 0.02,
             ),
-            // Text("1",),
-            BigText(
+            const BigText(
               text: "1",
-              color: const Color(0xFF000000),
-              size: 16,
+              color: AppColors.black,
+              size: 14,
             ),
-            const SizedBox(width: 10),
+            SizedBox(
+              width: Dimensions.screenWidth * 0.02,
+            ),
             AppIcon(
+              width: Dimensions.screenWidth * 0.07,
+              height: Dimensions.screenHeight * 0.05,
               icon: Icons.add,
-              backgroundColor: const Color(0xFF656D4A),
-              iconColor: const Color(0xFFC2C5AA),
-            )
+              backgroundColor: AppColors.iconColor1,
+              iconColor: AppColors.containerColor,
+            ),
           ],
         ),
-        const SizedBox(
-          height: 5,
-        ),
+        SizedBox(height: Dimensions.screenHeight * 0.001),
         SmallText(
           text: des,
           size: 16,
           color: Color(0xFF343A40),
         ),
-        const SizedBox(
-          height: 5,
-        ),
-        // Text(
-        //   description,
-        //   style: const TextStyle(fontSize: 12, color: Colors.black26),
-        // ),
+        SizedBox(height: Dimensions.screenHeight * 0.001),
         SmallText(
           text: description,
         ),
-        const SizedBox(
-          height: 10,
-        ),
+        SizedBox(height: Dimensions.screenHeight * 0.001),
         SmallText(
           text: "Pack",
-          color: const Color(0xFF656D4A),
+          color: AppColors.iconColor1,
           size: 16,
         ),
-        const SizedBox(
-          height: 2,
-        ),
+        SizedBox(height: Dimensions.screenHeight * 0.001),
         SmallText(
           text: pack,
-          color: const Color(0xFF656D4A),
+          color: AppColors.iconColor1,
         )
       ],
     );

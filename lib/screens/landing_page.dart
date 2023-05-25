@@ -3,9 +3,11 @@ import 'package:get/get.dart';
 import 'package:home_market/screens/logging_screens.dart/login_page.dart';
 import 'package:home_market/screens/logging_screens.dart/sign_up_screen.dart';
 import 'package:home_market/screens/slider.dart';
+import 'package:home_market/utilities/colors.dart';
 
 import '../utilities/small_text.dart';
 import '../widget/button.dart';
+import '../widget/dimensions.dart';
 
 class Landing extends StatefulWidget {
   @override
@@ -18,28 +20,22 @@ class _LandingState extends State<Landing> {
 
   final List<Widget> _pages = [
     SliderPage(
-      title: "Buy your Groceries",
+      title: "Buy your Groceries with ease",
       description:
-          "Shop from the thousands of groceries, fruits, beef, livestock,",
+          "Shop from the thousands of groceries, fruits, beef, livestock, vegetables, beverages, e.t.c in our stores with ease",
       image: "assets/images/onboarding_screen1.png",
-      description2: 'vegetables, beverages, e.t.c in our stores with ease',
-      title2: ' with ease',
     ),
     SliderPage(
-      title: "Get discount on",
-      description: "Get amazing discount when you order in bulk and also,",
-      image: "assets/images/onboarding_screen2.png",
-      description2: 'when you use the app frequently',
-      title2: 'bulk orders',
-    ),
-    SliderPage(
-      title: "Your order delivered",
+      title: "Get discount on bulk orders",
       description:
-          "Once you have selected everything you want to buy in the app,",
+          "Get amazing discount when you order in bulk and also, when you use the app frequently",
+      image: "assets/images/onboarding_screen2.png",
+    ),
+    SliderPage(
+      title: "Your order delivered to your doorstep",
+      description:
+          "Once you have selected everything you want to buy in the app, input your address and it will be delivered to your doorstep",
       image: "assets/images/onboarding_screen3.png",
-      description2:
-          'input your address and it will be delivered to your doorstep',
-      title2: 'to your doorstep',
     ),
   ];
 
@@ -51,6 +47,7 @@ class _LandingState extends State<Landing> {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -70,47 +67,49 @@ class _LandingState extends State<Landing> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List<Widget>.generate(_pages.length, (int index) {
                     return AnimatedContainer(
-                        duration: Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 300),
                         height: 10,
                         width: (index == _currentPage) ? 30 : 10,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 5, vertical: 30),
+                        margin: const EdgeInsets.symmetric(
+                            horizontal: 5, vertical: 30),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: (index == _currentPage)
-                                ? Color(0xFF333D29)
-                                : Color(0xFFCED4DA).withOpacity(0.5)));
+                                ? AppColors.green
+                                : AppColors.sliderColor.withOpacity(0.5)));
                   })),
               CustomButton(
                 text: 'Sign Up',
+                width: Dimensions.screenWidth * 0.7,
+                height: Dimensions.screenHeight * 0.065,
                 onPressed: () {
-                  Get.to(() => SignUpScreen());
+                  Get.to(() => const SignUpScreen());
                 },
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: Dimensions.screenHeight * 0.03,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SmallText(
+                  const SmallText(
                     text: "Already have an account?",
                     size: 14,
                   ),
                   GestureDetector(
                     onTap: () {
-                      Get.to(() => LogIn());
+                      Get.to(() => const LogIn());
                     },
-                    child: SmallText(
+                    child: const SmallText(
                       text: "Log In",
                       size: 14,
-                      color: Color(0xFF656D4A),
+                      color: AppColors.iconColor1,
                     ),
                   )
                 ],
               ),
-              const SizedBox(
-                height: 20,
+              SizedBox(
+                height: Dimensions.screenHeight * 0.02,
               )
             ],
           ),

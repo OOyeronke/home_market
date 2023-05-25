@@ -8,7 +8,9 @@ import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/app_column.dart';
 import 'package:home_market/widget/button.dart';
 
+import '../../utilities/colors.dart';
 import '../../widget/app_icon.dart';
+import '../../widget/dimensions.dart';
 
 class ProductItem extends StatelessWidget {
   final String image;
@@ -31,23 +33,20 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Scaffold(
       body: Column(
         children: [
           Stack(children: [
-            Container(
-              width: 400,
-              height: 350,
-              child: Image.asset(
-                image,
-                fit: BoxFit.cover,
-              ),
+            Image.asset(
+              image,
+              fit: BoxFit.cover,
             ),
             Positioned(
                 bottom: 0,
-                right: 30.0,
-                left: 30.0,
-                top: -220,
+                right: Dimensions.screenWidth * 0.1,
+                left: Dimensions.screenWidth * 0.1,
+                top: Dimensions.screenHeight * -0.25,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -56,11 +55,15 @@ class ProductItem extends StatelessWidget {
                         Navigator.of(context).pop();
                       },
                       child: AppIcon(
+                        width: Dimensions.screenWidth * 0.1,
+                        height: Dimensions.screenHeight * 0.05,
                         icon: Icons.arrow_back_ios,
                         iconSize: 18,
                       ),
                     ),
                     AppIcon(
+                      width: Dimensions.screenWidth * 0.1,
+                      height: Dimensions.screenHeight * 0.05,
                       icon: Icons.favorite_border,
                       iconSize: 20,
                     )
@@ -68,7 +71,11 @@ class ProductItem extends StatelessWidget {
                 ))
           ]),
           Container(
-            padding: const EdgeInsets.only(top: 10, right: 20, left: 20),
+            padding: EdgeInsets.only(
+              top: Dimensions.screenHeight * 0.02,
+              right: Dimensions.screenWidth * 0.02,
+              left: Dimensions.screenWidth * 0.04,
+            ),
             child: const Column(
               children: [
                 AppColumn(
@@ -85,105 +92,126 @@ class ProductItem extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Container(
-              padding: const EdgeInsets.only(left: 10, right: 20, top: 5),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SmallText(
-                    text: "Related Products",
-                    color: const Color(0xFF343A40),
-                    size: 16,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: const [
-                            BoxShadow(
-                              blurRadius: 5.0,
-                              color: Colors.black26,
-                            ),
-                          ],
-                          color: Colors.white,
+              padding: EdgeInsets.only(
+                top: Dimensions.screenHeight * 0.01,
+                right: Dimensions.screenWidth * 0.01,
+                left: Dimensions.screenWidth * 0.01,
+              ),
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: Dimensions.screenWidth * 0.02,
+                    right: Dimensions.screenWidth * 0.02),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SmallText(
+                      text: "Related Products",
+                      color: AppColors.textColor,
+                      size: 16,
+                    ),
+                    SizedBox(
+                      height: Dimensions.screenHeight * 0.01,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.only(
+                            left: Dimensions.screenWidth * 0.02,
+                            right: Dimensions.screenWidth * 0.02,
+                            top: Dimensions.screenHeight * 0.025,
+                            bottom: Dimensions.screenHeight * 0.025,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 5.0,
+                                color: Colors.black26,
+                              ),
+                            ],
+                            color: Colors.white,
+                          ),
+                          width: Dimensions.screenWidth * 0.45,
+                          height: Dimensions.screenHeight * 0.12,
+                          child: Center(
+                            child: Row(children: [
+                              Image.asset(image2),
+                              SizedBox(
+                                width: Dimensions.screenWidth * 0.06,
+                              ),
+                              Column(
+                                children: [
+                                  SmallText(
+                                    text: text1,
+                                    size: 14,
+                                  ),
+                                  SizedBox(
+                                    height: Dimensions.screenHeight * 0.01,
+                                  ),
+                                  SmallText(
+                                    text: price1,
+                                    size: 14,
+                                    color: AppColors.brown,
+                                  )
+                                ],
+                              ),
+                            ]),
+                          ),
                         ),
-                        width: 160,
-                        height: 80,
-                        child: Center(
+                        SizedBox(
+                          width: Dimensions.screenWidth * 0.04,
+                        ),
+                        Container(
+                          padding: EdgeInsets.only(
+                            left: Dimensions.screenWidth * 0.02,
+                            right: Dimensions.screenWidth * 0.02,
+                            top: Dimensions.screenHeight * 0.025,
+                            bottom: Dimensions.screenHeight * 0.025,
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: const [
+                              BoxShadow(
+                                blurRadius: 5.0,
+                                color: Colors.black26,
+                              ),
+                            ],
+                            color: Colors.white,
+                          ),
+                          width: Dimensions.screenWidth * 0.45,
+                          height: Dimensions.screenHeight * 0.12,
                           child: Row(children: [
-                            Image.asset(image2),
-                            const SizedBox(
-                              width: 20,
+                            Image.asset(image3),
+                            SizedBox(
+                              width: Dimensions.screenWidth * 0.06,
                             ),
                             Column(
                               children: [
                                 SmallText(
-                                  text: text1,
+                                  text: text2,
                                   size: 14,
                                 ),
-                                const SizedBox(height: 5),
+                                SizedBox(
+                                  height: Dimensions.screenHeight * 0.01,
+                                ),
                                 SmallText(
-                                  text: price1,
+                                  text: price2,
                                   size: 14,
-                                  color: const Color(0xFF936639),
+                                  color: AppColors.brown,
                                 )
                               ],
                             ),
                           ]),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          boxShadow: const [
-                            BoxShadow(
-                              blurRadius: 5.0,
-                              color: Colors.black26,
-                            ),
-                          ],
-                          color: Colors.white,
-                        ),
-                        width: 160,
-                        height: 80,
-                        child: Row(children: [
-                          Image.asset(image3),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Column(
-                            children: [
-                              SmallText(
-                                text: text2,
-                                size: 14,
-                              ),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              SmallText(
-                                text: price2,
-                                size: 14,
-                                color: const Color(0xFF936639),
-                              )
-                            ],
-                          ),
-                        ]),
-                      )
-                    ],
-                  ),
-                ],
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
-          const SizedBox(
-            height: 10,
+          SizedBox(
+            height: Dimensions.screenHeight * 0.057,
           ),
           Container(
             decoration: const BoxDecoration(
@@ -198,18 +226,21 @@ class ProductItem extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: const EdgeInsets.all(20),
+                  padding: EdgeInsets.only(
+                    top: Dimensions.screenHeight * 0.025,
+                    bottom: Dimensions.screenHeight * 0.027,
+                  ),
                   child: Row(
                     children: [
-                      const SizedBox(
-                        width: 20,
+                      SizedBox(
+                        width: Dimensions.screenWidth * 0.06,
                       ),
-                      Column(
+                      const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SmallText(
                               text: "Price",
-                              color: const Color(0xFFADB5BD),
+                              color: AppColors.grey,
                               size: 14,
                             ),
                             BigText(
@@ -217,8 +248,8 @@ class ProductItem extends StatelessWidget {
                               size: 20,
                             ),
                           ]),
-                      const SizedBox(
-                        width: 20,
+                      SizedBox(
+                        width: Dimensions.screenWidth * 0.15,
                       ),
                       CustomButton(
                           height: 45,

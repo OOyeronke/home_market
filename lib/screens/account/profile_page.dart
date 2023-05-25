@@ -5,6 +5,9 @@ import 'package:home_market/utilities/big_text.dart';
 import 'package:home_market/utilities/small_text.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../utilities/colors.dart';
+import '../../widget/dimensions.dart';
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -27,28 +30,33 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 50, right: 20, left: 20),
+        padding: EdgeInsets.only(
+          right: Dimensions.screenWidth * 0.02,
+          left: Dimensions.screenWidth * 0.02,
+          top: Dimensions.screenHeight * 0.075,
+        ),
         child: Column(
           children: [
             Center(
               child: Column(
                 children: [
-                  BigText(
+                  const BigText(
                     text: "Profile",
-                    color: const Color(0xFF6C757D),
+                    color: AppColors.mainColor,
                     size: 30,
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: Dimensions.screenHeight * 0.02,
                   ),
                   GestureDetector(
                     onTap: () {
                       getImageFromGallery();
                     },
                     child: CircleAvatar(
-                      radius: MediaQuery.of(context).size.width * 0.20,
+                      radius: Dimensions.screenWidth * 0.20,
                       backgroundColor: Colors.white,
                       backgroundImage: imgXFile == null
                           ? null
@@ -57,24 +65,24 @@ class _ProfilePageState extends State<ProfilePage> {
                           ? Icon(
                               Icons.add_photo_alternate,
                               color: Colors.grey,
-                              size: MediaQuery.of(context).size.width * 0.20,
+                              size: Dimensions.screenWidth * 0.20,
                             )
                           : null,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
+                  SizedBox(
+                    height: Dimensions.screenHeight * 0.02,
                   ),
-                  BigText(
+                  const BigText(
                     text: "MAY VALERIE",
                     size: 30,
                   ),
-                  const SizedBox(
-                    height: 10,
+                  SizedBox(
+                    height: Dimensions.screenHeight * 0.01,
                   ),
-                  SmallText(
+                  const SmallText(
                     text: "Edit Profile",
-                    color: const Color(0xFF656D4A),
+                    color: AppColors.iconColor1,
                     size: 14,
                   ),
                   const Divider(
@@ -89,27 +97,27 @@ class _ProfilePageState extends State<ProfilePage> {
                   itemCount: 1,
                   itemBuilder: (BuildContext context, int index) {
                     return Container(
-                      padding: const EdgeInsets.only(
-                        bottom: 20,
-                        left: 10,
-                        right: 10,
+                      padding: EdgeInsets.only(
+                        right: Dimensions.screenWidth * 0.02,
+                        left: Dimensions.screenWidth * 0.02,
+                        bottom: Dimensions.screenHeight * 0.075,
                       ),
                       child: Column(
                         children: [
                           Row(
                             children: [
-                              SmallText(
+                              const SmallText(
                                 text: "Enable Biometric login",
                                 size: 16,
                               ),
-                              const SizedBox(
-                                width: 70,
+                              SizedBox(
+                                width: Dimensions.screenWidth * 0.2,
                               ),
                               Switch(
-                                activeColor: Color(0xFF582F0E),
-                                activeTrackColor: Color(0xFF936639),
-                                inactiveThumbColor: Color(0xFF936639),
-                                inactiveTrackColor: Color(0xFFCED4DA),
+                                activeColor: const Color(0xFF582F0E),
+                                activeTrackColor: AppColors.brown,
+                                inactiveThumbColor: AppColors.brown,
+                                inactiveTrackColor: AppColors.sliderColor,
                                 splashRadius: 50.0,
                                 value: loginMode,
                                 onChanged: (value) =>
@@ -117,23 +125,23 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: Dimensions.screenHeight * 0.001,
                           ),
                           Row(
                             children: [
-                              SmallText(
+                              const SmallText(
                                 text: "Enable dark mode",
                                 size: 16,
                               ),
-                              const SizedBox(
-                                width: 100,
+                              SizedBox(
+                                width: Dimensions.screenWidth * 0.3,
                               ),
                               Switch(
-                                activeColor: Color(0xFF582F0E),
-                                activeTrackColor: Color(0xFF936639),
-                                inactiveThumbColor: Color(0xFF936639),
-                                inactiveTrackColor: Color(0xFFCED4DA),
+                                activeColor: const Color(0xFF582F0E),
+                                activeTrackColor: AppColors.brown,
+                                inactiveThumbColor: AppColors.brown,
+                                inactiveTrackColor: AppColors.sliderColor,
                                 splashRadius: 50.0,
                                 value: colorMode,
                                 onChanged: (value) =>
@@ -141,13 +149,18 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: Dimensions.screenHeight * 0.001,
                           ),
                           Container(
-                            padding: EdgeInsets.all(20),
-                            width: 400,
-                            height: 90,
+                            padding: EdgeInsets.only(
+                              right: Dimensions.screenWidth * 0.02,
+                              left: Dimensions.screenWidth * 0.05,
+                              top: Dimensions.screenHeight * 0.02,
+                              bottom: Dimensions.screenHeight * 0.02,
+                            ),
+                            width: Dimensions.screenWidth * 0.9,
+                            height: Dimensions.screenHeight * 0.12,
                             decoration: BoxDecoration(
                                 boxShadow: const [
                                   BoxShadow(
@@ -155,46 +168,57 @@ class _ProfilePageState extends State<ProfilePage> {
                                     color: Colors.black26,
                                   ),
                                 ],
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.screenWidth * 0.07),
                                 color: Colors.white),
                             child: Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(15),
-                                  width: 60,
-                                  height: 60,
+                                  padding: EdgeInsets.only(
+                                    right: Dimensions.screenWidth * 0.02,
+                                    left: Dimensions.screenWidth * 0.02,
+                                    top: Dimensions.screenHeight * 0.02,
+                                    bottom: Dimensions.screenHeight * 0.02,
+                                  ),
+                                  width: Dimensions.screenWidth * 0.17,
+                                  height: Dimensions.screenHeight * 0.15,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: const Color(0xFFC2C5AA)),
+                                      borderRadius: BorderRadius.circular(
+                                        Dimensions.screenWidth * 0.07,
+                                      ),
+                                      color: AppColors.containerColor),
                                   child: const Icon(
                                     Icons.person_outlined,
-                                    color: Color(0xFF414833),
+                                    color: AppColors.iconBackgroundColor,
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 20,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.04,
                                 ),
-                                SmallText(
+                                const SmallText(
                                   text: "Profile Information",
                                   size: 14,
                                 ),
-                                const SizedBox(
-                                  width: 30,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.1,
                                 ),
-                                const Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFFADB5BD),
-                                )
+                                const Icon(Icons.arrow_forward_ios,
+                                    color: AppColors.grey)
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: Dimensions.screenHeight * 0.02,
                           ),
                           Container(
-                            padding: EdgeInsets.all(20),
-                            width: 400,
-                            height: 90,
+                            padding: EdgeInsets.only(
+                              right: Dimensions.screenWidth * 0.02,
+                              left: Dimensions.screenWidth * 0.05,
+                              top: Dimensions.screenHeight * 0.02,
+                              bottom: Dimensions.screenHeight * 0.02,
+                            ),
+                            width: Dimensions.screenWidth * 0.9,
+                            height: Dimensions.screenHeight * 0.12,
                             decoration: BoxDecoration(
                                 boxShadow: const [
                                   BoxShadow(
@@ -202,46 +226,56 @@ class _ProfilePageState extends State<ProfilePage> {
                                     color: Colors.black26,
                                   ),
                                 ],
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.screenWidth * 0.07),
                                 color: Colors.white),
                             child: Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(15),
-                                  width: 60,
-                                  height: 60,
+                                  padding: EdgeInsets.only(
+                                    right: Dimensions.screenWidth * 0.02,
+                                    left: Dimensions.screenWidth * 0.02,
+                                    top: Dimensions.screenHeight * 0.02,
+                                    bottom: Dimensions.screenHeight * 0.02,
+                                  ),
+                                  width: Dimensions.screenWidth * 0.17,
+                                  height: Dimensions.screenHeight * 0.15,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: const Color(0xFFC2C5AA)),
+                                      borderRadius: BorderRadius.circular(
+                                          Dimensions.screenWidth * 0.07),
+                                      color: AppColors.containerColor),
                                   child: const Icon(
                                     Icons.shopping_cart_rounded,
-                                    color: Color(0xFF414833),
+                                    color: AppColors.iconBackgroundColor,
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 20,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.04,
                                 ),
-                                SmallText(
+                                const SmallText(
                                   text: "Track Order",
                                   size: 14,
                                 ),
-                                const SizedBox(
-                                  width: 60,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.22,
                                 ),
-                                const Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFFADB5BD),
-                                )
+                                const Icon(Icons.arrow_forward_ios,
+                                    color: AppColors.grey)
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: Dimensions.screenHeight * 0.02,
                           ),
                           Container(
-                            padding: EdgeInsets.all(20),
-                            width: 400,
-                            height: 90,
+                            padding: EdgeInsets.only(
+                              right: Dimensions.screenWidth * 0.02,
+                              left: Dimensions.screenWidth * 0.05,
+                              top: Dimensions.screenHeight * 0.02,
+                              bottom: Dimensions.screenHeight * 0.02,
+                            ),
+                            width: Dimensions.screenWidth * 0.9,
+                            height: Dimensions.screenHeight * 0.12,
                             decoration: BoxDecoration(
                                 boxShadow: const [
                                   BoxShadow(
@@ -249,46 +283,56 @@ class _ProfilePageState extends State<ProfilePage> {
                                     color: Colors.black26,
                                   ),
                                 ],
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.screenWidth * 0.07),
                                 color: Colors.white),
                             child: Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(15),
-                                  width: 60,
-                                  height: 60,
+                                  padding: EdgeInsets.only(
+                                    right: Dimensions.screenWidth * 0.02,
+                                    left: Dimensions.screenWidth * 0.02,
+                                    top: Dimensions.screenHeight * 0.02,
+                                    bottom: Dimensions.screenHeight * 0.02,
+                                  ),
+                                  width: Dimensions.screenWidth * 0.17,
+                                  height: Dimensions.screenHeight * 0.15,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: const Color(0xFFC2C5AA)),
+                                      borderRadius: BorderRadius.circular(
+                                          Dimensions.screenWidth * 0.07),
+                                      color: AppColors.containerColor),
                                   child: const Icon(
                                     Icons.settings_outlined,
-                                    color: Color(0xFF414833),
+                                    color: AppColors.iconBackgroundColor,
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 20,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.04,
                                 ),
-                                SmallText(
+                                const SmallText(
                                   text: "Settings",
                                   size: 14,
                                 ),
-                                const SizedBox(
-                                  width: 80,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.3,
                                 ),
-                                const Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFFADB5BD),
-                                )
+                                const Icon(Icons.arrow_forward_ios,
+                                    color: AppColors.grey)
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: Dimensions.screenHeight * 0.02,
                           ),
                           Container(
-                            padding: EdgeInsets.all(20),
-                            width: 400,
-                            height: 90,
+                            padding: EdgeInsets.only(
+                              right: Dimensions.screenWidth * 0.02,
+                              left: Dimensions.screenWidth * 0.05,
+                              top: Dimensions.screenHeight * 0.02,
+                              bottom: Dimensions.screenHeight * 0.02,
+                            ),
+                            width: Dimensions.screenWidth * 0.9,
+                            height: Dimensions.screenHeight * 0.12,
                             decoration: BoxDecoration(
                                 boxShadow: const [
                                   BoxShadow(
@@ -296,36 +340,41 @@ class _ProfilePageState extends State<ProfilePage> {
                                     color: Colors.black26,
                                   ),
                                 ],
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius: BorderRadius.circular(
+                                    Dimensions.screenWidth * 0.07),
                                 color: Colors.white),
                             child: Row(
                               children: [
                                 Container(
-                                  padding: EdgeInsets.all(15),
-                                  width: 60,
-                                  height: 60,
+                                  padding: EdgeInsets.only(
+                                    right: Dimensions.screenWidth * 0.02,
+                                    left: Dimensions.screenWidth * 0.02,
+                                    top: Dimensions.screenHeight * 0.02,
+                                    bottom: Dimensions.screenHeight * 0.02,
+                                  ),
+                                  width: Dimensions.screenWidth * 0.17,
+                                  height: Dimensions.screenHeight * 0.15,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: const Color(0xFFC2C5AA)),
+                                      borderRadius: BorderRadius.circular(
+                                          Dimensions.screenWidth * 0.07),
+                                      color: AppColors.containerColor),
                                   child: const Icon(
                                     Icons.logout,
-                                    color: Color(0xFF414833),
+                                    color: AppColors.iconBackgroundColor,
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 20,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.04,
                                 ),
-                                SmallText(
+                                const SmallText(
                                   text: "Log Out",
                                   size: 14,
                                 ),
-                                const SizedBox(
-                                  width: 80,
+                                SizedBox(
+                                  width: Dimensions.screenWidth * 0.3,
                                 ),
-                                const Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFFADB5BD),
-                                )
+                                const Icon(Icons.arrow_forward_ios,
+                                    color: AppColors.grey)
                               ],
                             ),
                           ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:home_market/screens/home/product_page.dart';
 import 'package:home_market/screens/products/products_item.dart';
+import 'package:home_market/screens/search/search_location.dart';
 import 'package:home_market/utilities/big_text.dart';
+import 'package:home_market/utilities/search_data.dart';
 import 'package:home_market/utilities/small_text.dart';
-import 'package:home_market/widget/custom_text_field.dart';
 import 'package:home_market/widget/product_button.dart';
+import '../../utilities/colors.dart';
+import '../../widget/dimensions.dart';
 import '../logging_screens.dart/login_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,19 +19,26 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String selectedMeal = "";
+
   TextEditingController searchTextEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Dimensions().init(context);
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+        padding: EdgeInsets.only(
+          top: Dimensions.screenHeight * 0.06,
+          left: Dimensions.screenWidth * 0.04,
+          right: Dimensions.screenWidth * 0.04,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(
+                const Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SmallText(
@@ -43,8 +52,6 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
                 Container(
-                  //padding: const EdgeInsets.all(20),
-
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     color: const Color(0xFF8DBF2C),
@@ -56,15 +63,63 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 5,
+            SizedBox(
+              height: Dimensions.screenHeight * 0.02,
             ),
-            CustomTextField(
-              iconData2: Icons.search,
-              hintText: "Search",
-              textEditingController: searchTextEditingController,
-              isObsecre: false,
-              enabled: true,
+            Container(
+              width: Dimensions.screenWidth * 0.9,
+              height: Dimensions.screenHeight * 0.06,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                ),
+                boxShadow: [
+                  BoxShadow(blurRadius: 5.0, color: Colors.black12),
+                ],
+              ),
+              child: OutlinedButton.icon(
+                label: const Text(
+                  "Search",
+                ),
+                icon: const Icon(Icons.search),
+                style: OutlinedButton.styleFrom(
+                  primary: AppColors.grey,
+                  alignment: Alignment.centerLeft,
+                  side: const BorderSide(color: Colors.transparent),
+                ),
+                onPressed: () async {
+                  final finalResult = await showSearch(
+                    context: context,
+                    delegate: SearchLocation(
+                      allMealTypes: mealClass,
+                      mealSuggestions: suggestedMeal,
+                    ),
+                  );
+                  setState(() {
+                    selectedMeal = finalResult!;
+                  });
+                },
+              ),
+            ),
+            // selectedMeal == ""
+            //     ? Container()
+            //     : Container(
+            //         padding: const EdgeInsets.symmetric(
+            //           horizontal: 35.0,
+            //           vertical: 35.0,
+            //         ),
+            //         color: Colors.orange,
+            //         child: Text(
+            //           selectedMeal,
+            //           style: TextStyle(
+            //             fontWeight: FontWeight.bold,
+            //             color: Colors.white,
+            //           ),
+            //         ),
+            //       ),
+            SizedBox(
+              height: Dimensions.screenHeight * 0.02,
             ),
             SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
@@ -107,8 +162,12 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.vertical,
               physics: const BouncingScrollPhysics(),
               child: Container(
-                padding:
-                    const EdgeInsets.only(top: 1, right: 5, left: 5, bottom: 1),
+                padding: EdgeInsets.only(
+                  top: Dimensions.screenHeight * 0.005,
+                  right: Dimensions.screenWidth * 0.05,
+                  left: Dimensions.screenWidth * 0.005,
+                  bottom: Dimensions.screenHeight * 0.005,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -192,12 +251,12 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: Dimensions.screenHeight * 0.01,
                     ),
-                    BigText(
+                    const BigText(
                       text: "Recently Viewed",
-                      color: const Color(0xFF000000),
+                      color: AppColors.black,
                       size: 20,
                     ),
                     Column(
@@ -205,35 +264,31 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             Image.asset("assets/images/carrot.png"),
-                            const SizedBox(
-                              width: 20,
+                            SizedBox(
+                              width: Dimensions.screenWidth * 0.05,
                             ),
-                            Column(
+                            const Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 BigText(
                                     text: "Carrot",
                                     size: 13,
-                                    color: const Color(0xFF6C757D)),
+                                    color: AppColors.mainColor),
                                 SmallText(
                                   text: "Vegetable",
-                                  color: const Color(0xFFADB5BD),
+                                  color: AppColors.grey,
                                   size: 10,
                                 )
                               ],
                             ),
-                            const SizedBox(
-                              width: 100,
+                            SizedBox(
+                              width: Dimensions.screenWidth * 0.25,
                             ),
-                            BigText(
+                            const BigText(
                               text: "\$10.99",
-                              color: const Color(0xFF936639),
+                              color: AppColors.brown,
                               size: 18,
                             )
-                            // const Text(
-                            //   "\$10.99",
-                            //   style: TextStyle(color: Color(0xFF936639)),
-                            // )
                           ],
                         )
                       ],
