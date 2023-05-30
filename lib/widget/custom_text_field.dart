@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utilities/colors.dart';
 import 'dimensions.dart';
 
+// ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
   final TextEditingController? textEditingController;
   final IconData? iconData, iconData2, suffIcon1, suffIcon2;
@@ -56,7 +57,7 @@ class CustomTextField extends StatelessWidget {
         controller: textEditingController,
         obscureText: isObsecre!,
         validator: validate,
-        cursorColor: Theme.of(context).primaryColor,
+        cursorColor: AppColors.green,
         decoration: InputDecoration(
             border: InputBorder.none,
             prefixIcon: Icon(
@@ -69,6 +70,7 @@ class CustomTextField extends StatelessWidget {
             hintText: hintText,
             hintStyle: GoogleFonts.inter(
               color: AppColors.grey,
+              fontSize: 15,
             )),
       ),
     );

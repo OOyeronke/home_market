@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:home_market/screens/home/main_screen.dart';
 import 'package:home_market/utilities/colors.dart';
 import '../../utilities/big_text.dart';
@@ -19,18 +20,6 @@ class SellerSignUpPage extends StatefulWidget {
 }
 
 class _SellerSignUpPageState extends State<SellerSignUpPage> {
-  // TextEditingController emailTextEditingController = TextEditingController();
-  // TextEditingController passwordTextEditingController = TextEditingController();
-  // TextEditingController nameTextEditingController = TextEditingController();
-  // TextEditingController confirmPasswordTextEditingController =
-  //     TextEditingController();
-  // TextEditingController businessNameTextEditingController =
-  //     TextEditingController();
-  // TextEditingController businessAddressTextEditingController =
-  //     TextEditingController();
-  // TextEditingController govtIdTextEditingController = TextEditingController();
-  // GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController name = TextEditingController();
@@ -203,15 +192,46 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                         text: "Govt Id",
                         size: 16,
                       ),
-                      CustomTextField(
-                        hintText: "Upload your govt Id",
-                        textEditingController: govtId,
-                        isObsecre: false,
-                        enabled: true,
-                        iconData: Icons.attach_file,
-                        onPressed: () {
-                          getImageFromGallery();
-                        },
+                      Container(
+                        height: Dimensions.screenHeight * 0.075,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(color: AppColors.grey, width: 2),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(20),
+                          ),
+                        ),
+                        padding: EdgeInsets.only(
+                          top: Dimensions.screenHeight * 0.005,
+                          bottom: Dimensions.screenHeight * 0.005,
+                          left: Dimensions.screenHeight * 0.06,
+                          right: Dimensions.screenHeight * 0.005,
+                        ),
+                        margin: EdgeInsets.only(
+                          top: Dimensions.screenHeight * 0.005,
+                          bottom: Dimensions.screenHeight * 0.005,
+                          left: Dimensions.screenHeight * 0.005,
+                          right: Dimensions.screenHeight * 0.005,
+                        ),
+                        child: TextFormField(
+                          //controller: govtId,
+                          obscureText: false,
+                          enabled: true,
+                          cursorColor: AppColors.green,
+                          decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: "Upload your govt Id",
+                              hintStyle: GoogleFonts.inter(
+                                color: AppColors.grey,
+                                fontSize: 15,
+                              ),
+                              suffixIcon: GestureDetector(
+                                child: Icon(Icons.attach_file),
+                                onTap: () {
+                                  getImageFromGallery();
+                                },
+                              )),
+                        ),
                       ),
                       // Container(
                       //   width: 300,

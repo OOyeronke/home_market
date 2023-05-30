@@ -79,45 +79,19 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
               child: OutlinedButton.icon(
-                label: const Text(
-                  "Search",
-                ),
-                icon: const Icon(Icons.search),
-                style: OutlinedButton.styleFrom(
-                  primary: AppColors.grey,
-                  alignment: Alignment.centerLeft,
-                  side: const BorderSide(color: Colors.transparent),
-                ),
-                onPressed: () async {
-                  final finalResult = await showSearch(
-                    context: context,
-                    delegate: SearchLocation(
-                      allMealTypes: mealClass,
-                      mealSuggestions: suggestedMeal,
-                    ),
-                  );
-                  setState(() {
-                    selectedMeal = finalResult!;
-                  });
-                },
-              ),
+                  label: const Text(
+                    "Search",
+                  ),
+                  icon: const Icon(Icons.search),
+                  style: OutlinedButton.styleFrom(
+                    primary: AppColors.grey,
+                    alignment: Alignment.centerLeft,
+                    side: const BorderSide(color: Colors.transparent),
+                  ),
+                  onPressed: () {
+                    Get.to(() => SearchLocation());
+                  }),
             ),
-            // selectedMeal == ""
-            //     ? Container()
-            //     : Container(
-            //         padding: const EdgeInsets.symmetric(
-            //           horizontal: 35.0,
-            //           vertical: 35.0,
-            //         ),
-            //         color: Colors.orange,
-            //         child: Text(
-            //           selectedMeal,
-            //           style: TextStyle(
-            //             fontWeight: FontWeight.bold,
-            //             color: Colors.white,
-            //           ),
-            //         ),
-            //       ),
             SizedBox(
               height: Dimensions.screenHeight * 0.02,
             ),

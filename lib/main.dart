@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:home_market/screens/account/profile_page.dart';
 import 'package:home_market/screens/landing_page.dart';
 
+import 'splash/splash_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -13,10 +15,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return const GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      home: Landing(),
+      home: MySplashScreen(),
       //home: ProfilePage(),
       // home: ProductItem(
       //   image: 'assets/images/red_tomato2.png',
