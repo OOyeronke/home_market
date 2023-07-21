@@ -1,87 +1,25 @@
-// import 'package:flutter/material.dart';
-// import 'package:home_market/screens/home/main_screen.dart';
-// import 'package:home_market/screens/home/product_page.dart';
-// import '../../utilities/search_data.dart';
-
-// class SearchScreen extends StatelessWidget {
-//   final Food food;
-//   const SearchScreen({super.key, required this.food});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//         padding: const EdgeInsets.only(left: 15.00, right: 15.00),
-//         child: ListTile(
-//           onTap: () {
-//             Navigator.of(context)
-//                 .push(MaterialPageRoute(builder: (_) => MainScreen()));
-//           },
-//           leading: const Icon(
-//             Icons.person,
-//             size: 40,
-//           ),
-//           title: Text(
-//             food.foodName,
-//             style: const TextStyle(color: Colors.black, fontSize: 18),
-//           ),
-//           subtitle: Text(
-//             "Meal Class : ${(food.foodClass.toString())}",
-//             style: const TextStyle(color: Colors.black87, fontSize: 14),
-//           ),
-//         ));
-//   }
-// }
-
-// // import 'package:flutter/material.dart';
-// // import 'package:home_market/screens/search/search_details.dart';
-// // // import 'package:search_delegate_tutorial/student_details_page.dart';
-// // // import 'package:search_delegate_tutorial/students_data.dart';
-
-// // import '../../utilities/search_data.dart';
-
-// // class SingleStudentWidget extends StatelessWidget {
-// //   final Food food;
-// //   const SingleStudentWidget({super.key, required this.food});
-
-// //   @override
-// //   Widget build(BuildContext context) {
-// //     return Padding(
-// //         padding: const EdgeInsets.only(left: 15.00, right: 15.00),
-// //         child: ListTile(
-// //           onTap: () {
-// //             Navigator.of(context).push(MaterialPageRoute(
-// //                 builder: (_) => StudentDetailsPage(food: food)));
-// //           },
-// //           leading: const Icon(
-// //             Icons.person,
-// //             size: 40,
-// //           ),
-// //           title: Text(
-// //             food.foodName,
-// //             style: const TextStyle(color: Colors.black, fontSize: 18),
-// //           ),
-// //           subtitle: Text(
-// //             "Meal Class : ${(food.foodClass.toString())}",
-// //             style: const TextStyle(color: Colors.black87, fontSize: 14),
-// //           ),
-// //         ));
-// //   }
-// // }
-
 import 'package:flutter/material.dart';
+import 'package:home_market/model/market_model.dart';
 import 'package:home_market/screens/search/search_details.dart';
-
-import '../../utilities/search_data.dart';
+import 'package:home_market/utilities/colors.dart';
+import 'package:provider/provider.dart';
+import '../../model/food_model.dart';
+import '../../model/list_model.dart';
+import '../../utilities/small_text.dart';
 import '../../widget/dimensions.dart';
-// import 'package:search_delegate_tutorial/student_details_page.dart';
-// import 'package:search_delegate_tutorial/students_data.dart';
 
 class SearchScreen extends StatelessWidget {
-  final Food food;
-  const SearchScreen({super.key, required this.food});
+  final int plantId;
+
+  const SearchScreen({
+    super.key,
+    required this.plantId,
+  });
 
   @override
   Widget build(BuildContext context) {
+    List<Plant> _plantList = Plant.plantList;
+
     return Padding(
         padding: const EdgeInsets.only(
             left: 15.00, right: 15.00, top: 10, bottom: 10),
@@ -103,21 +41,37 @@ class SearchScreen extends StatelessWidget {
               children: [
                 ListTile(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => SearchDetails(food: food)));
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (_) => SearchDetails(index: index)));
                   },
                   trailing: Text(
-                    "${(food.price.toString())}",
-                    style: const TextStyle(color: Colors.black87, fontSize: 14),
+                    //food.currency + food.price,
+                    _plantList[plantId].price.toString(),
+
+                    style: const TextStyle(
+                        color: AppColors.brown,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
                   ),
-                  leading: Image.asset(food.picture),
-                  title: Text(
-                    food.foodName,
-                    style: const TextStyle(color: Colors.black, fontSize: 18),
+                  leading: Container(
+                      decoration: BoxDecoration(
+                          color: AppColors.sliderColor,
+                          borderRadius: BorderRadius.circular(20.0)),
+                      child: Image.asset(
+                        //food.picture,
+                        _plantList[plantId].imageURL,
+                        fit: BoxFit.cover,
+                      )),
+                  title: SmallText(
+                    //text: food.foodName,
+                    text: _plantList[plantId].plantName,
+                    size: 18,
                   ),
-                  subtitle: Text(
-                    "${(food.foodClass.toString())}",
-                    style: const TextStyle(color: Colors.black87, fontSize: 14),
+                  subtitle: SmallText(
+                    //text: food.foodClass,
+                    text: _plantList[plantId].category,
+                    color: const Color(0xFFADB5BD),
+                    size: 8,
                   ),
                 ),
               ],

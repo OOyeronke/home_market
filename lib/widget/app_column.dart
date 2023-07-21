@@ -77,17 +77,17 @@ class AppColumn extends StatelessWidget {
           size: 16,
           color: Color(0xFF343A40),
         ),
-        SizedBox(height: Dimensions.screenHeight * 0.001),
+        SizedBox(height: Dimensions.screenHeight * 0.01),
         SmallText(
           text: description,
         ),
-        SizedBox(height: Dimensions.screenHeight * 0.001),
+        SizedBox(height: Dimensions.screenHeight * 0.01),
         SmallText(
           text: "Pack",
           color: AppColors.iconColor1,
           size: 16,
         ),
-        SizedBox(height: Dimensions.screenHeight * 0.001),
+        SizedBox(height: Dimensions.screenHeight * 0.01),
         SmallText(
           text: pack,
           color: AppColors.iconColor1,

@@ -1,186 +1,181 @@
 // import 'package:flutter/material.dart';
-// import 'package:home_market/screens/logging_screens.dart/login_page.dart';
+// import 'package:home_market/model/list_model.dart';
+// import 'package:home_market/model/market_model.dart';
 // import 'package:home_market/screens/search/search_screen.dart';
-// import 'package:home_market/utilities/search_data.dart';
+// import 'package:home_market/utilities/colors.dart';
+// import 'package:home_market/utilities/small_text.dart';
 
-// class SearchLocation extends SearchDelegate<String> {
-//   //final List<String> allMealTypes;
-//   final List<String> mealSuggestions;
+// import '../../model/food_model.dart';
 
-//   SearchLocation({
-//     //required this.allMealTypes,
-//     required this.mealSuggestions,
-//   });
+// class SearchLocation extends StatefulWidget {
+//   const SearchLocation({super.key});
 
+//   @override
+//   SearchLocationState createState() => SearchLocationState();
+// }
+
+// class SearchLocationState extends State<SearchLocation> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         appBar: AppBar(
+//           iconTheme: const IconThemeData(color: AppColors.green),
+//           title: const SmallText(
+//             text: 'Search',
+//             size: 16,
+//           ),
+//           backgroundColor: Colors.white,
+//           actions: [
+//             IconButton(
+//               onPressed: () async {
+//                 showSearch<MarketItemModel?>(
+//                     context: context, delegate: FoodSearchDelegate());
+//               },
+//               icon: const Icon(
+//                 Icons.search,
+//                 color: AppColors.green,
+//               ),
+//             ),
+//           ],
+//         ),
+//         body: ListView.builder(
+//             itemCount: ListModel.itemImage.length,
+//             itemBuilder: (context, index) {
+//               return SearchScreen(
+//                 index: index,
+//               );
+//             }));
+//   }
+// }
+
+// class FoodSearchDelegate extends SearchDelegate<MarketItemModel?> {
 //   @override
 //   List<Widget>? buildActions(BuildContext context) {
 //     return [
 //       IconButton(
 //           onPressed: () {
-//             query = " ";
+//             query = "";
 //           },
-//           icon: const Icon(Icons.clear))
+//           icon: const Icon(Icons.close)),
 //     ];
 //   }
 
 //   @override
 //   Widget? buildLeading(BuildContext context) {
 //     return IconButton(
-//       onPressed: () {
-//         close(context, query);
-//       },
-//       icon: const Icon(Icons.arrow_back),
-//     );
+//         onPressed: () {
+//           close(context, null);
+//         },
+//         icon: const Icon(Icons.navigate_before));
 //   }
 
 //   @override
 //   Widget buildResults(BuildContext context) {
-//     final listItems = query.isEmpty
-//         ? foodData
-//         : foodData
-//             .where((food) =>
-//                 food.foodName.toLowerCase().startsWith(query.toLowerCase()))
-//             .toList();
-//     return listItems.isEmpty
-//         ? const Center(
-//             child: Text("No Data Found !"),
-//           )
-//         : ListView.builder(
-//             itemCount: listItems.length,
-//             itemBuilder: (context, index) {
-//               // return SearchScreen(
-//               //   //food: listItems[index],
-//               // );
-//             });
+//     return InkWell(
+//       onTap: () {
+//         showResults(context);
+//       },
+//       child: const Center(
+//         child: Text(
+//           "Start Searching",
+//           style: TextStyle(color: Colors.black),
+//         ),
+//       ),
+//     );
 //   }
 
 //   @override
 //   Widget buildSuggestions(BuildContext context) {
-//     final List<dynamic> allMealSuggestions = mealSuggestions.isEmpty
-//         ? suggestedMeal
-//         : suggestedMeal
-//             .where(
-//               (mealsSuggest) => mealsSuggest.toString().contains(
-//                     query.toLowerCase(),
-//                   ),
-//             )
-//             .toList();
+//     final listItems = Plant.where((name) {
+//       return name.toString().startsWith(query.toLowerCase());
+//     });
 //     return ListView.builder(
-//       itemCount: allMealSuggestions.length,
-//       itemBuilder: (context, index) => ListTile(
-//         title: Text(allMealSuggestions[index]),
-//         onTap: () {
-//           close(context, allMealSuggestions[index]);
-//           Navigator.push(
-//               context, MaterialPageRoute(builder: (context) => LogIn()));
-//           query = allMealSuggestions[index];
-//         },
-//         //
-//       ),
+//       itemCount: listItems.length,
+//       itemBuilder: (context, index) {
+//         var result = listItems[index];
+//         return ListTile(
+//           title: Text(result),
+//         );
+//       },
 //     );
+
+//     // List<String> matchQuery = [];
+//     // for (dynamic fruit in data) {
+//     //   if (fruit.toString().contains(query.toLowerCase())) {
+//     //     matchQuery.add(fruit);
+//     //   }
+//     // }
+//     // return ListView.builder(
+//     //   itemCount: matchQuery.length,
+//     //   itemBuilder: (context, index) {
+//     //     var result = matchQuery[index];
+//     //     return ListTile(
+//     //       title: Text(result),
+//     //     );
+//     //   },
+//     // );
 //   }
+
+//   // return listItems.isEmpty
+//   //     ? const Center(
+//   //         child: Text("No Data Found !"),
+//   //       )
+//   //     : ListView.builder(
+//   //         itemCount: listItems.length,
+//   //         itemBuilder: (context, index) {
+//   //           return SearchScreen(
+//   //             index: index,
+//   //             item: listItems[index],
+//   //           );
+//   //         });
+
+//   //  var item = context.select<FavoriteItemListModel, Item>(
+//   //   (favoriteList) => favoriteList.getByPosition(index),
+//   // );
+
+//   // final listItems = data
+//   //     .where(
+//   //         (food) => food.name.toLowerCase().startsWith(query.toLowerCase()))
+//   //     .toList();
+//   // return listItems.isEmpty
+//   //     ? const Center(
+//   //         child: Text("No Data Found !"),
+//   //       )
+//   //     : ListView.builder(
+//   //         itemCount: listItems.length,
+//   //         itemBuilder: (context, index) {
+//   //           return SearchScreen(
+//   //             index: index,
+//   //           );
+//   //         });
+
+//   // List<String> matchQuery = [];
+//   // for (var food in ListModel.itemSubtitle) {
+//   //   if (food.toLowerCase().contains(query.toLowerCase())) {
+//   //     matchQuery.add(food);
+//   //   }
+//   // }
+
+//   // return matchQuery.isEmpty
+//   //     ? const Center(
+//   //         child: Text("No Data Found !"),
+//   //       )
+//   //     : ListView.builder(
+//   //         itemCount: matchQuery.length,
+//   //         itemBuilder: (context, index) {
+//   //           var result = matchQuery[index];
+//   //           return SearchScreen(index: index);
+//   //         },
+//   //       );
 // }
 
-// // class StudentSearchDelegate extends SearchDelegate {
-// //   final List<String> mealSuggestions;
-// //   StudentSearchDelegate({
-// //     required this.mealSuggestions,
-// //   });
-// //   // @override
-// //   // String get searchFieldLabel => "Search For Student";
-// //   // @override
-// //   // ThemeData appBarTheme(BuildContext context) {
-// //   //   final ThemeData theme = Theme.of(context);
-
-// //   //   return theme.copyWith(
-// //   //       hintColor: Colors.white,
-// //   //       inputDecorationTheme:
-// //   //           const InputDecorationTheme(border: InputBorder.none),
-// //   //       textTheme: const TextTheme(
-// //   //           titleLarge: TextStyle(
-// //   //               color: Colors.white,
-// //   //               fontSize: 18,
-// //   //               fontWeight: FontWeight.bold)));
-// //   // }
-
-// //   @override
-// //   List<Widget>? buildActions(BuildContext context) {
-// //     return [
-// //       IconButton(
-// //           onPressed: () {
-// //             query = "";
-// //           },
-// //           icon: const Icon(Icons.close)),
-// //     ];
-// //   }
-
-// //   @override
-// //   Widget? buildLeading(BuildContext context) {
-// //     return IconButton(
-// //       onPressed: () {
-// //         close(context, null);
-// //       },
-// //       icon: const Icon(Icons.arrow_back),
-// //     );
-// //   }
-
-// //   @override
-// //   Widget buildResults(BuildContext context) {
-// //     final listItems = query.isEmpty
-// //         ? foodData
-// //         : foodData
-// //             .where((food) =>
-// //                 food.foodName.toLowerCase().startsWith(query.toLowerCase()))
-// //             .toList();
-// //     return listItems.isEmpty
-// //         ? const Center(
-// //             child: Text("No Data Found !"),
-// //           )
-// //         : ListView.builder(
-// //             itemCount: listItems.length,
-// //             itemBuilder: (context, index) {
-// //               return SingleStudentWidget(
-// //                 food: listItems[index],
-// //               );
-// //             });
-// //   }
-
-// //   @override
-// //   Widget buildSuggestions(BuildContext context) {
-// //     final listItems = query.isEmpty
-// //         ? foodData
-// //         : foodData
-// //             .where(
-// //               (food) => food.foodName.toLowerCase().contains(
-// //                     query.toLowerCase(),
-// //                   ),
-// //             )
-// //             .toList();
-// //     return ListView.builder(
-// //         itemCount: listItems.length,
-// //         itemBuilder: (context, index) => ListTile(
-// //                 //title: Text(listItems[index]),
-// //                 onTap: () {
-// //               close(context, index);
-// //               Navigator.push(
-// //                   context,
-// //                   MaterialPageRoute(
-// //                       builder: (context) => SingleStudentWidget(
-// //                             food: listItems[index],
-// //                           )));
-// //               //query = listItems[index];
-// //             }));
-// //   }
-// // }
-
 import 'package:flutter/material.dart';
+import 'package:home_market/model/food_model.dart';
 import 'package:home_market/screens/search/search_screen.dart';
-import 'package:home_market/utilities/colors.dart';
-import 'package:home_market/utilities/search_data.dart';
-import 'package:home_market/utilities/small_text.dart';
 
 class SearchLocation extends StatefulWidget {
-  const SearchLocation({super.key});
+  final int? plantId;
+  const SearchLocation({super.key, this.plantId});
 
   @override
   SearchLocationState createState() => SearchLocationState();
@@ -189,38 +184,48 @@ class SearchLocation extends StatefulWidget {
 class SearchLocationState extends State<SearchLocation> {
   @override
   Widget build(BuildContext context) {
+    List<Plant> _plantList = Plant.plantList;
     return Scaffold(
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: AppColors.green),
-          title: const SmallText(
-            text: 'Search',
-            size: 16,
-          ),
-          backgroundColor: Colors.white,
+          title: const Text("Search Demo"),
           actions: [
             IconButton(
               onPressed: () async {
-                showSearch<Food?>(
-                    context: context, delegate: FoodSearchDelegate());
+                showSearch<Plant?>(
+                    context: context, delegate: PlantSearchDelegate());
               },
-              icon: const Icon(
-                Icons.search,
-                color: AppColors.green,
-              ),
+              icon: const Icon(Icons.search),
             ),
           ],
         ),
         body: ListView.builder(
-            itemCount: foodData.length,
+            itemCount: _plantList.length,
             itemBuilder: (context, index) {
               return SearchScreen(
-                food: foodData[index],
+                plantId: index,
               );
             }));
   }
 }
 
-class FoodSearchDelegate extends SearchDelegate<Food?> {
+class PlantSearchDelegate extends SearchDelegate<Plant?> {
+  @override
+  String get searchFieldLabel => "Search For Groceries";
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
+    return theme.copyWith(
+        hintColor: Colors.white,
+        inputDecorationTheme:
+            const InputDecorationTheme(border: InputBorder.none),
+        textTheme: const TextTheme(
+            titleLarge: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold)));
+  }
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -236,6 +241,7 @@ class FoodSearchDelegate extends SearchDelegate<Food?> {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
         onPressed: () {
+          // Navigator.of(context).pop();
           close(context, null);
         },
         icon: const Icon(Icons.navigate_before));
@@ -243,11 +249,12 @@ class FoodSearchDelegate extends SearchDelegate<Food?> {
 
   @override
   Widget buildResults(BuildContext context) {
+    List<Plant> _plantList = Plant.plantList;
     final listItems = query.isEmpty
-        ? foodData
-        : foodData
-            .where((food) =>
-                food.foodClass.toLowerCase().startsWith(query.toLowerCase()))
+        ? _plantList
+        : _plantList
+            .where((student) =>
+                student.category.toLowerCase().startsWith(query.toLowerCase()))
             .toList();
     return listItems.isEmpty
         ? const Center(
@@ -257,7 +264,7 @@ class FoodSearchDelegate extends SearchDelegate<Food?> {
             itemCount: listItems.length,
             itemBuilder: (context, index) {
               return SearchScreen(
-                food: listItems[index],
+                plantId: _plantList[index].plantId,
               );
             });
   }

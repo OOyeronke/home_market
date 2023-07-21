@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:home_market/screens/home/main_screen.dart';
 import 'package:home_market/screens/logging_screens.dart/sign_up_screen.dart';
@@ -9,6 +10,9 @@ import 'package:home_market/widget/custom_text_field.dart';
 
 import '../../utilities/colors.dart';
 import '../../widget/dimensions.dart';
+import '../forgot_password/forgot_password_options/forgot_password_btn_widget.dart';
+import '../forgot_password/forgot_password_options/forgot_password_model_bottom_sheet.dart';
+import '../home/root_page.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -22,6 +26,16 @@ class _LogInState extends State<LogIn> {
   TextEditingController passwordTextEditingController = TextEditingController();
   bool _isHidden = true;
 
+  validateForm() {
+    if (emailTextEditingController.text.isNotEmpty &&
+        passwordTextEditingController.text.isNotEmpty) {
+      loginNow();
+    } else {
+      Fluttertoast.showToast(msg: "Please provide email and password");
+    }
+  }
+
+  loginNow() async {}
   void _togglePasswordView() {
     setState(() {
       _isHidden = !_isHidden;
@@ -69,7 +83,7 @@ class _LogInState extends State<LogIn> {
                   ),
                   CustomTextField(
                     hintText: "Enter your email address",
-                    textEditingController: emailTextEditingController,
+                    controller: emailTextEditingController,
                     isObsecre: false,
                     enabled: true,
                   ),
@@ -82,7 +96,7 @@ class _LogInState extends State<LogIn> {
                   ),
                   CustomTextField(
                     hintText: "Enter your password",
-                    textEditingController: passwordTextEditingController,
+                    controller: passwordTextEditingController,
                     isObsecre: _isHidden,
                     enabled: true,
                     suffIcon1: Icons.visibility,
@@ -91,15 +105,20 @@ class _LogInState extends State<LogIn> {
                       _togglePasswordView();
                     },
                   ),
-                  Container(
-                      alignment: Alignment.bottomRight,
-                      padding:
-                          EdgeInsets.only(right: Dimensions.screenWidth * 0.04),
-                      child: const SmallText(
-                        text: "Forgot your password?",
-                        color: AppColors.iconColor1,
-                        size: 13,
-                      )),
+                  GestureDetector(
+                    onTap: () {
+                      ForgotPasswordScreen.buildShowModalBottomSheet(context);
+                    },
+                    child: Container(
+                        alignment: Alignment.bottomRight,
+                        padding: EdgeInsets.only(
+                            right: Dimensions.screenWidth * 0.04),
+                        child: const SmallText(
+                          text: "Forgot your password?",
+                          color: AppColors.iconColor1,
+                          size: 13,
+                        )),
+                  ),
                   SizedBox(
                     height: Dimensions.screenHeight * 0.02,
                   ),
@@ -109,7 +128,7 @@ class _LogInState extends State<LogIn> {
                     height: Dimensions.screenHeight * 0.08,
                     width: Dimensions.screenHeight * 0.7,
                     onPressed: () {
-                      Get.to(() => const MainScreen());
+                      Get.to(() => const RootPage());
                     },
                   )),
                   const SizedBox(

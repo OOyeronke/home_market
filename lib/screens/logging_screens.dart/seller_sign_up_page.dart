@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:home_market/authentication/user_model.dart';
+import 'package:home_market/controller/signup_controller.dart';
+import 'package:home_market/screens/forgot_password/forgot_password_otp/otp_screen.dart';
 import 'package:home_market/screens/home/main_screen.dart';
 import 'package:home_market/utilities/colors.dart';
 import '../../utilities/big_text.dart';
@@ -9,6 +12,7 @@ import '../../utilities/small_text.dart';
 import '../../widget/button.dart';
 import '../../widget/custom_text_field.dart';
 import '../../widget/dimensions.dart';
+import '../home/root_page.dart';
 import 'login_page.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -29,50 +33,50 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
   TextEditingController govtId = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  formValidation() {
-    if (name.text.isEmpty) {
-      Fluttertoast.showToast(msg: "Type in your name");
-    } else if (email.text.isEmpty) {
-      Fluttertoast.showToast(
-        msg: "Type in your email address",
-      );
-    } else if (businessAddress.text.isEmpty) {
-      Fluttertoast.showToast(
-        msg: "Type in your business address",
-      );
-    } else if (businessName.text.isEmpty) {
-      Fluttertoast.showToast(
-        msg: "Type in your business name",
-      );
-    } else if (govtId.text.isEmpty) {
-      Fluttertoast.showToast(
-        msg: "Type in your govtId",
-      );
-    } else if (password.text.isEmpty) {
-      Fluttertoast.showToast(
-        msg: "Type in your password",
-      );
-    } else if (password.text.length < 6) {
-      Fluttertoast.showToast(
-        msg: "Password cannot be less than six characters",
-      );
-    } else if (confirmPassword.text.isEmpty) {
-      Fluttertoast.showToast(
-        msg: "Confirm Password",
-      );
-    } else if (confirmPassword.text.length < 6) {
-      Fluttertoast.showToast(
-        msg: "Password cannot be less than six characters",
-      );
-    } else if (password.text != confirmPassword.text) {
-      Fluttertoast.showToast(
-        msg: "Password and Confirm Password do not match",
-      );
-    } else {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MainScreen()));
-    }
-  }
+  // formValidation() {
+  //   if (name.text.isEmpty) {
+  //     Fluttertoast.showToast(msg: "Type in your name");
+  //   } else if (email.text.isEmpty) {
+  //     Fluttertoast.showToast(
+  //       msg: "Type in your email address",
+  //     );
+  //   } else if (businessAddress.text.isEmpty) {
+  //     Fluttertoast.showToast(
+  //       msg: "Type in your business address",
+  //     );
+  //   } else if (businessName.text.isEmpty) {
+  //     Fluttertoast.showToast(
+  //       msg: "Type in your business name",
+  //     );
+  //   } else if (govtId.text.isEmpty) {
+  //     Fluttertoast.showToast(
+  //       msg: "Type in your govtId",
+  //     );
+  //   } else if (password.text.isEmpty) {
+  //     Fluttertoast.showToast(
+  //       msg: "Type in your password",
+  //     );
+  //   } else if (password.text.length < 6) {
+  //     Fluttertoast.showToast(
+  //       msg: "Password cannot be less than six characters",
+  //     );
+  //   } else if (confirmPassword.text.isEmpty) {
+  //     Fluttertoast.showToast(
+  //       msg: "Confirm Password",
+  //     );
+  //   } else if (confirmPassword.text.length < 6) {
+  //     Fluttertoast.showToast(
+  //       msg: "Password cannot be less than six characters",
+  //     );
+  //   } else if (password.text != confirmPassword.text) {
+  //     Fluttertoast.showToast(
+  //       msg: "Password and Confirm Password do not match",
+  //     );
+  //   } else {
+  //     Navigator.push(
+  //         context, MaterialPageRoute(builder: (context) => const RootPage()));
+  //   }
+  // }
 
   XFile? imgXFile;
   final ImagePicker imagePicker = ImagePicker();
@@ -100,6 +104,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignUpController());
     Dimensions().init(context);
     return Scaffold(
       body: Container(
@@ -142,7 +147,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your full name",
-                        textEditingController: name,
+                        controller: controller.fullName,
                         isObsecre: false,
                         enabled: true,
                       ),
@@ -155,7 +160,20 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your email address",
-                        textEditingController: email,
+                        controller: controller.email,
+                        isObsecre: false,
+                        enabled: true,
+                      ),
+                      SizedBox(
+                        height: Dimensions.screenHeight * 0.02,
+                      ),
+                      const BigText(
+                        text: "Phone Number",
+                        size: 16,
+                      ),
+                      CustomTextField(
+                        hintText: "Enter your phone number",
+                        controller: controller.phoneNo,
                         isObsecre: false,
                         enabled: true,
                       ),
@@ -168,7 +186,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your business name",
-                        textEditingController: businessName,
+                        controller: businessName,
                         isObsecre: false,
                         enabled: true,
                       ),
@@ -181,7 +199,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your business address",
-                        textEditingController: businessAddress,
+                        controller: businessAddress,
                         isObsecre: false,
                         enabled: true,
                       ),
@@ -255,7 +273,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your password",
-                        textEditingController: password,
+                        controller: controller.password,
                         isObsecre: _isHidden,
                         enabled: true,
                         suffIcon1: Icons.visibility,
@@ -273,7 +291,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Re-enter your password",
-                        textEditingController: confirmPassword,
+                        controller: confirmPassword,
                         isObsecre: _isHidden,
                         enabled: true,
                         suffIcon1: Icons.visibility,
@@ -291,7 +309,25 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                   child: CustomButton(
                 text: "Sign Up",
                 onPressed: () {
-                  formValidation();
+                  if (_formKey.currentState!.validate()) {
+                    //   SignUpController.instance
+                    //       .phoneAuthentication(controller.phoneNo.text.trim());
+                    //   Get.to(() => const OTPScreen());
+                    // SignUpController.instance.registerUser(
+                    //     controller.email.text.trim(),
+                    //     controller.password.text.trim());
+                  }
+                  //formValidation();
+                  final user = UserModel(
+                      email: controller.email.text.trim(),
+                      fullName: controller.fullName.text.trim(),
+                      phoneNo: controller.phoneNo.text.trim(),
+                      password: controller.password.text.trim());
+                  SignUpController.instance.createUser(user);
+                  // SignUpController.instance.registerUser(
+                  //   controller.email.text.trim(),
+                  //   controller.password.text.trim(),
+                  // );
                 },
               )),
               SizedBox(

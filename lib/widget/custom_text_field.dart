@@ -6,7 +6,7 @@ import 'dimensions.dart';
 
 // ignore: must_be_immutable
 class CustomTextField extends StatelessWidget {
-  final TextEditingController? textEditingController;
+  final TextEditingController? controller;
   final IconData? iconData, iconData2, suffIcon1, suffIcon2;
   final String? hintText;
   bool? isObsecre = true;
@@ -16,7 +16,7 @@ class CustomTextField extends StatelessWidget {
 
   CustomTextField({
     super.key,
-    this.textEditingController,
+    this.controller,
     this.iconData,
     this.hintText,
     this.isObsecre,
@@ -54,7 +54,7 @@ class CustomTextField extends StatelessWidget {
       ),
       child: TextFormField(
         enabled: enabled,
-        controller: textEditingController,
+        controller: controller,
         obscureText: isObsecre!,
         validator: validate,
         cursorColor: AppColors.green,

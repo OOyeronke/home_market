@@ -7,10 +7,12 @@ import 'package:home_market/utilities/big_text.dart';
 import 'package:home_market/utilities/small_text.dart';
 import 'package:home_market/widget/custom_text_field.dart';
 
+import '../../controller/signup_controller.dart';
 import '../../utilities/colors.dart';
 import '../../widget/button.dart';
 import '../../widget/dimensions.dart';
 import '../../widget/loading_dialog_widget.dart';
+import '../home/root_page.dart';
 
 class BuyerSignUpPage extends StatefulWidget {
   const BuyerSignUpPage({super.key});
@@ -55,7 +57,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
       );
     } else {
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const MainScreen()));
+          context, MaterialPageRoute(builder: (context) => const RootPage()));
     }
   }
 
@@ -75,6 +77,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignUpController());
     Dimensions().init(context);
     return Scaffold(
       body: Container(
@@ -117,7 +120,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your full name",
-                        textEditingController: name,
+                        controller: name,
                         isObsecre: false,
                         enabled: true,
                       ),
@@ -130,7 +133,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your email address",
-                        textEditingController: email,
+                        controller: controller.email,
                         isObsecre: false,
                         enabled: true,
                       ),
@@ -143,7 +146,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your password",
-                        textEditingController: password,
+                        controller: controller.password,
                         isObsecre: _isHidden,
                         enabled: true,
                         suffIcon1: Icons.visibility,
@@ -161,7 +164,7 @@ class _BuyerSignUpPageState extends State<BuyerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Re-enter your password",
-                        textEditingController: confirmPassword,
+                        controller: confirmPassword,
                         isObsecre: _isHidden,
                         enabled: true,
                         suffIcon1: Icons.visibility,

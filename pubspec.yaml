@@ -43,6 +43,15 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
   google_fonts: ^4.0.4
   fluttertoast: ^8.2.1
+  shared_preferences: ^2.1.1
+  provider: ^6.0.5
+  sqflite: ^2.2.8+4
+  animated_bottom_navigation_bar: ^1.2.0
+  firebase_core: ^2.15.0
+  cloud_firestore: ^4.8.3
+  firebase_auth: ^4.7.1
+  flutter_otp_text_field: ^1.1.1
+  page_transition: ^2.0.9
 
 dev_dependencies:
   flutter_test:

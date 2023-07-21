@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "364193358086",
+    "project_id": "home-market-app-66d0c",
+    "storage_bucket": "home-market-app-66d0c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364193358086:android:cfeefb9aea68322ef63e87",
+        "android_client_info": {
+          "package_name": "com.example.home_market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364193358086-53b867poafgq95rth7t3d0eqg4ieta89.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDb-oL9dYWvHWrln7O4X4knmZ4AVatK4Kg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364193358086-53b867poafgq95rth7t3d0eqg4ieta89.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

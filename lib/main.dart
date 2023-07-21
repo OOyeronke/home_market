@@ -1,11 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:home_market/screens/account/profile_page.dart';
-import 'package:home_market/screens/landing_page.dart';
-
+import 'package:home_market/firebase_options.dart';
+import 'package:home_market/repository/auth_repository/authentication_repository.dart';
 import 'splash/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) => Get.put(AuthenticationRepository()));
   runApp(const MyApp());
 }
 
@@ -18,17 +21,17 @@ class MyApp extends StatelessWidget {
     return const GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      //darkTheme: ,
+      defaultTransition: Transition.leftToRightWithFade,
+      transitionDuration: const Duration(milliseconds: 500),
+      //theme: appTheme,
+      // initialRoute: '/',
+      // routes: {
+      //   '/': (context) => const MySplashScreen(),
+      //   '/favoritePage': (context) => const FavoritePageScreen(),
+      // },
       home: MySplashScreen(),
-      //home: ProfilePage(),
-      // home: ProductItem(
-      //   image: 'assets/images/red_tomato2.png',
-      //   image2: 'assets/images/lettuce2.png',
-      //   image3: 'assets/images/pepper.png',
-      //   price1: '\$14.99',
-      //   price2: '\$11.99',
-      //   text1: 'Lettuce',
-      //   text2: 'Pepper',
-      // ),
+      //home: FavoriteListScreen(),
     );
   }
 }
