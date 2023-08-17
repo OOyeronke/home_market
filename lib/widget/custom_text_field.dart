@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../utilities/colors.dart';
@@ -12,7 +13,8 @@ class CustomTextField extends StatelessWidget {
   bool? isObsecre = true;
   bool? enabled = true;
   final Function()? onPressed;
-  final validate;
+  final List<TextInputFormatter>? inputFormatters;
+  final String? Function(String?)? validator;
 
   CustomTextField({
     super.key,
@@ -25,7 +27,8 @@ class CustomTextField extends StatelessWidget {
     this.iconData2,
     this.suffIcon1,
     this.suffIcon2,
-    this.validate,
+    this.inputFormatters,
+    this.validator,
   });
 
   @override
@@ -56,7 +59,7 @@ class CustomTextField extends StatelessWidget {
         enabled: enabled,
         controller: controller,
         obscureText: isObsecre!,
-        validator: validate,
+        validator: validator,
         cursorColor: AppColors.green,
         decoration: InputDecoration(
             border: InputBorder.none,

@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:home_market/authentication/user_model.dart';
 import 'package:home_market/controller/signup_controller.dart';
-import 'package:home_market/screens/forgot_password/forgot_password_otp/otp_screen.dart';
-import 'package:home_market/screens/home/main_screen.dart';
 import 'package:home_market/utilities/colors.dart';
+import 'package:home_market/widget/primary_button.dart';
+import '../../authentication/user_model.dart';
 import '../../utilities/big_text.dart';
 import '../../utilities/small_text.dart';
 import '../../widget/button.dart';
 import '../../widget/custom_text_field.dart';
 import '../../widget/dimensions.dart';
-import '../home/root_page.dart';
+import '../forgot_password/forgot_password_otp/otp_screen.dart';
 import 'login_page.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -160,6 +158,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                       ),
                       CustomTextField(
                         hintText: "Enter your email address",
+                        //validator: Helper.validateEmail,
                         controller: controller.email,
                         isObsecre: false,
                         enabled: true,
@@ -176,6 +175,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                         controller: controller.phoneNo,
                         isObsecre: false,
                         enabled: true,
+                        //label: Text('Phone Number'),
                       ),
                       SizedBox(
                         height: Dimensions.screenHeight * 0.02,
@@ -282,6 +282,7 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
                           _togglePasswordView();
                         },
                       ),
+
                       SizedBox(
                         height: Dimensions.screenHeight * 0.02,
                       ),
@@ -305,31 +306,80 @@ class _SellerSignUpPageState extends State<SellerSignUpPage> {
               Center(
                 child: Image.asset("assets/images/lettuce_down_center.png"),
               ),
+
+              // Obx(() => TPrimaryButton(
+              //       isLoading: controller.isLoading.value ? true : false,
+              //       onPressed: controller.isFacebookLoading.value ||
+              //               controller.isGoogleLoading.value
+              //           ? () {}
+              //           : controller.isLoading.value
+              //               ? () {}
+              //               : () => controller.createUser(),
+              //       text: 'SignUp',
+              //     )),
+
               Center(
                   child: CustomButton(
                 text: "Sign Up",
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
-                    //   SignUpController.instance
-                    //       .phoneAuthentication(controller.phoneNo.text.trim());
-                    //   Get.to(() => const OTPScreen());
-                    // SignUpController.instance.registerUser(
-                    //     controller.email.text.trim(),
-                    //     controller.password.text.trim());
+                    // final user = UserModel(
+                    //     email: controller.email.text.trim(),
+                    //     fullName: controller.fullName.text.trim(),
+                    //     phoneNo: controller.phoneNo.text.trim(),
+                    //     password: controller.password.text.trim());
+                    // SignUpController.instance.createUser(user);
+                    SignUpController.instance.registerUser(
+                      controller.email.text.trim(),
+                      controller.password.text.trim(),
+                    );
+
+                    Get.to(() => const OTPScreen());
                   }
-                  //formValidation();
-                  final user = UserModel(
-                      email: controller.email.text.trim(),
-                      fullName: controller.fullName.text.trim(),
-                      phoneNo: controller.phoneNo.text.trim(),
-                      password: controller.password.text.trim());
-                  SignUpController.instance.createUser(user);
-                  // SignUpController.instance.registerUser(
-                  //   controller.email.text.trim(),
-                  //   controller.password.text.trim(),
-                  // );
                 },
               )),
+
+              // Center(CustomButton(
+              //   onPressed: () {
+              //     if (_formKey.currentState!.validate()) {
+              //       SignUpController.instance
+              //           .phoneAuthentication(controller.phoneNo.text.trim());
+              //       Get.to(() => const OTPScreen());
+              //       SignUpController.instance.registerUser(
+              //           controller.email.text.trim(),
+              //           controller.password.text.trim());
+              //     }
+              //     formValidation();
+              //     final user = UserModel(
+              //         email: controller.email.text.trim(),
+              //         fullName: controller.fullName.text.trim(),
+              //         phoneNo: controller.phoneNo.text.trim(),
+              //         password: controller.password.text.trim());
+              //     SignUpController.instance.createUser(user);
+              //     SignUpController.instance.registerUser(
+              //       controller.email.text.trim(),
+              //       controller.password.text.trim(),
+              //     );
+              //   },
+              //   text: 'SignUp',
+              // )),
+              // SizedBox(
+              //   width: double.infinity,
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       if (_formKey.currentState!.validate()) {
+              //         //SignUpController.instance.createUser();
+              //         // SignUpController.instance.registerUser(
+              //         //     controller.email.text.trim(),
+              //         //     controller.password.text.trim());
+              //         SignUpController.instance
+              //             .phoneAuthentication(controller.phoneNo.text.trim());
+              //         Get.to(() => const OTPScreen());
+              //       }
+              //     },
+              //     child: Text('SignUp'),
+              //   ),
+              // ),
               SizedBox(
                 height: Dimensions.screenHeight * 0.04,
               ),

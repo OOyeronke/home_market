@@ -33,8 +33,8 @@ class CustomButton extends StatelessWidget {
       height: height,
       width: width,
       padding: EdgeInsets.only(
-        left: Dimensions.screenWidth * 0.1,
-        right: Dimensions.screenWidth * 0.1,
+        left: Dimensions.screenWidth * 0.001,
+        right: Dimensions.screenWidth * 0.001,
       ),
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.iconColor1),

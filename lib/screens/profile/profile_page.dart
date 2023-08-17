@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:home_market/repository/auth_repository/authentication_repository.dart';
 import 'package:home_market/screens/profile/profile_information.dart';
 import 'package:home_market/screens/profile/profile_settings_page.dart';
 import 'package:home_market/screens/profile/update_profile_page.dart';
@@ -193,7 +194,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           ProfileMenuWidget(
                               title: "Logout",
                               icon: Icons.logout,
-                              onPress: () {}),
+                              onPress: () {
+                                AuthenticationRepository.instance.logout();
+                              }),
                         ],
                       ),
                     );

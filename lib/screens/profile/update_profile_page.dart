@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:home_market/authentication/user_model.dart';
 import 'package:home_market/controller/profile_controller.dart';
+import 'package:home_market/screens/profile/image_utility.dart';
 import 'package:home_market/utilities/big_text.dart';
 import 'package:home_market/widget/button.dart';
 import 'package:image_picker/image_picker.dart';
@@ -18,15 +19,16 @@ class UpdateProfilePage extends StatefulWidget {
 }
 
 class _UpdateProfilePageState extends State<UpdateProfilePage> {
-  TextEditingController email = TextEditingController();
-  TextEditingController password = TextEditingController();
-  TextEditingController name = TextEditingController();
+  // TextEditingController email = TextEditingController();
+  // TextEditingController password = TextEditingController();
+  // TextEditingController name = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
   //final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   XFile? imgXFile;
 
   final ImagePicker imagePicker = ImagePicker();
+  late Image imageFromPreferences;
 
   bool loginMode = true;
 
@@ -36,6 +38,15 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
     imgXFile = await imagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       imgXFile;
+    });
+  }
+
+  loadImageFromPreferences() {
+    Utility.getImageFromPreferences().then((img) {
+      if (null == img) {
+        return;
+      }
+      imageFromPreferences = Utility.imageFromBase64String(img);
     });
   }
 
@@ -79,7 +90,13 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.done) {
                     if (snapshot.hasData) {
-                      UserModel userData = snapshot.data as UserModel;
+                      UserModel user = snapshot.data as UserModel;
+                      final email = TextEditingController(text: user.email);
+                      final fullName =
+                          TextEditingController(text: user.fullName);
+                      final password =
+                          TextEditingController(text: user.password);
+                      final phoneNo = TextEditingController(text: user.phoneNo);
                       return Column(
                         children: [
                           SizedBox(
@@ -115,15 +132,17 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                                 text: "Full Name",
                                 size: 16,
                               ),
-                              TextFormField(
-                                initialValue: userData.fullName,
-                                decoration: const InputDecoration(
-                                  label: Text("Enter your full name"),
-                                ),
-                              ),
+                              // TextFormField(
+                              //   initialValue: user.fullName,
+                              //   controller: controller.fullName,
+                              //   decoration: const InputDecoration(
+                              //     label: Text("Enter your full name"),
+                              //   ),
+                              // ),
                               CustomTextField(
                                 hintText: "Enter your full name",
-                                controller: name,
+                                controller: fullName,
+                                //controller: controller.fullName,
                                 isObsecre: false,
                                 enabled: true,
                               ),
@@ -134,6 +153,13 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                                 text: "Email address",
                                 size: 16,
                               ),
+                              // TextFormField(
+                              //   initialValue: user.email,
+                              //   controller: controller.email,
+                              //   decoration: const InputDecoration(
+                              //     label: Text("Enter your full name"),
+                              //   ),
+                              // ),
                               CustomTextField(
                                 hintText: "Enter your email address",
                                 controller: email,
@@ -147,6 +173,13 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                                 text: "Password",
                                 size: 16,
                               ),
+                              // TextFormField(
+                              //   initialValue: user.password,
+                              //   controller: controller.password,
+                              //   decoration: const InputDecoration(
+                              //     label: Text("Enter your full name"),
+                              //   ),
+                              // ),
                               CustomTextField(
                                 hintText: "Enter your password",
                                 controller: password,
@@ -182,7 +215,15 @@ class _UpdateProfilePageState extends State<UpdateProfilePage> {
                               Center(
                                   child: CustomButton(
                                 text: "Save",
-                                onPressed: () {},
+                                onPressed: () async {
+                                  final userData = UserModel(
+                                    email: email.text.trim(),
+                                    password: password.text.trim(),
+                                    fullName: fullName.text.trim(),
+                                    phoneNo: phoneNo.text.trim(),
+                                  );
+                                  await controller.updateRecord(userData);
+                                },
                                 height: Dimensions.screenHeight * 0.075,
                               ))
                             ],

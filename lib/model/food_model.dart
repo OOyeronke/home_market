@@ -3,13 +3,14 @@ class Plant {
   final int price;
   final String size;
   final double rating;
-  final int humidity;
+  final String pack;
   final String temperature;
   final String category;
   final String plantName;
   final String imageURL;
+  final String image2;
   bool isFavorated;
-  final String decription;
+  final String description;
   bool isSelected;
 
   Plant(
@@ -19,11 +20,12 @@ class Plant {
       required this.plantName,
       required this.size,
       required this.rating,
-      required this.humidity,
+      required this.pack,
       required this.temperature,
       required this.imageURL,
+      required this.image2,
       required this.isFavorated,
-      required this.decription,
+      required this.description,
       required this.isSelected});
 
   //List of Plants data
@@ -35,13 +37,14 @@ class Plant {
         plantName: 'Red Tomato',
         size: 'Small',
         rating: 4.5,
-        humidity: 34,
+        pack: "25 tomatoes in a pack",
         temperature: '23 - 34',
         imageURL: 'assets/images/red_tomato.png',
+        image2: 'assets/images/red_tomato2.png',
         isFavorated: true,
-        decription:
-            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
-            'even the harshest weather condition.',
+        description:
+            'Red tomatoes are sweet and are a major ingredient when making stew for households,'
+            'their juicy nature make them irresistible and super sweet.',
         isSelected: false),
     Plant(
         plantId: 1,
@@ -50,13 +53,14 @@ class Plant {
         plantName: 'Cabbage',
         size: 'Medium',
         rating: 4.8,
-        humidity: 56,
+        pack: "1 Kilogram in a pack",
         temperature: '19 - 22',
         imageURL: 'assets/images/cabbage.png',
+        image2: 'assets/images/cabbage_curve.png',
         isFavorated: false,
-        decription:
-            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
-            'even the harshest weather condition.',
+        description:
+            'Cabbage are a good source of vitamin, and they are nutritious and beneficial'
+            ' to the human body, use it in your salad to get a great taste',
         isSelected: false),
     Plant(
         plantId: 2,
@@ -65,13 +69,14 @@ class Plant {
         plantName: 'Lettuce',
         size: 'Large',
         rating: 4.7,
-        humidity: 34,
+        pack: "1 Kilogram in a pack",
         temperature: '22 - 25',
         imageURL: 'assets/images/lettuce.png',
+        image2: 'assets/images/lettuce_main.png',
         isFavorated: false,
-        decription:
-            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
-            'even the harshest weather condition.',
+        description:
+            'Lettuce are a good source of vitamin, and they are nutritious and beneficial'
+            'to the human body, use it in your salad to get a great taste',
         isSelected: false),
     Plant(
         plantId: 3,
@@ -80,86 +85,92 @@ class Plant {
         plantName: 'Cow Meat',
         size: 'Small',
         rating: 4.5,
-        humidity: 35,
+        pack: "5 Kilogram in a pack",
         temperature: '23 - 28',
         imageURL: 'assets/images/cow_meat.png',
+        image2: 'assets/images/meat_curve.png',
         isFavorated: false,
-        decription:
-            'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
-            'even the harshest weather condition.',
+        description:
+            'Cow meat is a good source of protein as it is derived from well nourished and cared for cows.'
+            ' Use it in your meals, for your parties, events and even as a snack',
         isSelected: false),
     Plant(
         plantId: 4,
         price: 24,
-        category: 'Recommended',
-        plantName: 'Big Bluestem',
+        category: 'Vegetable',
+        plantName: 'Celery',
         size: 'Large',
         rating: 4.1,
-        humidity: 66,
+        pack: "1 Kilogram in a pack",
         temperature: '12 - 16',
-        imageURL: 'assets/images/plant-four.png',
+        imageURL: 'assets/images/celery.png',
+        image2: 'assets/images/red_tomato_c.png',
         isFavorated: true,
-        decription:
+        description:
             'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.',
         isSelected: false),
     Plant(
         plantId: 5,
         price: 24,
-        category: 'Outdoor',
-        plantName: 'Meadow Sage',
+        category: 'Fruit',
+        plantName: 'Lemon',
         size: 'Medium',
         rating: 4.4,
-        humidity: 36,
+        pack: "1 Kilogram in a pack",
         temperature: '15 - 18',
-        imageURL: 'assets/images/plant-five.png',
+        imageURL: 'assets/images/lemon.png',
+        image2: 'assets/images/red_tomato_c.png',
         isFavorated: false,
-        decription:
+        description:
             'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.',
         isSelected: false),
     Plant(
         plantId: 6,
         price: 19,
-        category: 'Garden',
-        plantName: 'Plumbago',
+        category: 'Fruit',
+        plantName: 'Banana',
         size: 'Small',
         rating: 4.2,
-        humidity: 46,
+        pack: "1 Kilogram in a pack",
         temperature: '23 - 26',
         imageURL: 'assets/images/plant-six.png',
+        image2: 'assets/images/red_tomato_c.png',
         isFavorated: false,
-        decription:
+        description:
             'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.',
         isSelected: false),
     Plant(
         plantId: 7,
         price: 23,
-        category: 'Garden',
-        plantName: 'Tritonia',
+        category: 'Vegetable',
+        plantName: 'Pepper',
         size: 'Medium',
         rating: 4.5,
-        humidity: 34,
+        pack: "1 Kilogram in a pack",
         temperature: '21 - 24',
         imageURL: 'assets/images/plant-seven.png',
+        image2: 'assets/images/red_tomato_c.png',
         isFavorated: false,
-        decription:
+        description:
             'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.',
         isSelected: false),
     Plant(
         plantId: 8,
         price: 46,
-        category: 'Recommended',
-        plantName: 'Tritonia',
+        category: 'Vegetable',
+        plantName: 'Spinach',
         size: 'Medium',
         rating: 4.7,
-        humidity: 46,
+        pack: "1 Kilogram in a pack",
         temperature: '21 - 25',
         imageURL: 'assets/images/plant-eight.png',
+        image2: 'assets/images/red_tomato_c.png',
         isFavorated: false,
-        decription:
+        description:
             'This plant is one of the best plant. It grows in most of the regions in the world and can survive'
             'even the harshest weather condition.',
         isSelected: false),
@@ -168,8 +179,8 @@ class Plant {
   // factory Plant.fromJson(Map<String, dynamic> json) {
   //   return Plant(
   // category: json['category'],
-  // decription: json['decription'],
-  // humidity: json['humidity'],
+  // description: json['description'],
+  // pack: json['pack'],
   // imageURL: json['imageURL'],
   // isFavorated: json['isFavorated'] == 1,
   // isSelected: json['isSelected'] == 1,

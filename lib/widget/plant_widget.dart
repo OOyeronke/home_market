@@ -47,7 +47,7 @@ class PlantWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 10,
+              width: 30,
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,12 +74,15 @@ class PlantWidget extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(width: 200),
+            SizedBox(
+              width: 100,
+              height: 40.0,
+            ),
             Container(
                 //padding: const EdgeInsets.only(right: 10),
                 child: AppIcon(
               icon: Icons.delete,
-              iconSize: 20,
+              iconSize: 30,
             ))
           ],
         ),

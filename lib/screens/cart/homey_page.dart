@@ -6,7 +6,6 @@ import '../../utilities/big_text.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/small_text.dart';
 import '../../widget/dimensions.dart';
-import '../profile/profile_page.dart';
 import '../search/search_location.dart';
 import 'item_details.dart';
 
@@ -46,7 +45,7 @@ class _HomeyPageState extends State<HomeyPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
+              const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SmallText(
@@ -66,7 +65,7 @@ class _HomeyPageState extends State<HomeyPage> {
                 ),
                 child: GestureDetector(
                   onTap: () {
-                    AuthenticationRepository.instance.Logout();
+                    AuthenticationRepository.instance.logout();
                   },
                   // onTap: () {
                   //   Get.to(() => ProfilePage());
@@ -102,7 +101,7 @@ class _HomeyPageState extends State<HomeyPage> {
                   side: const BorderSide(color: Colors.transparent),
                 ),
                 onPressed: () {
-                  Get.to(() => SearchLocation());
+                  Get.to(() => const SearchLocation());
                 }),
           ),
           // Row(
@@ -178,7 +177,7 @@ class _HomeyPageState extends State<HomeyPage> {
         ]),
         Expanded(
             child: Padding(
-          padding: const EdgeInsets.only(bottom: 1.0),
+          padding: const EdgeInsets.only(bottom: 5.0),
           child: GridView.builder(
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -247,7 +246,7 @@ class ItemView extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Plant> _plantList = Plant.plantList;
     return Padding(
-      padding: EdgeInsets.all(5.0),
+      padding: EdgeInsets.all(10.0),
       child: InkResponse(
           onTap: () {
             Navigator.push(
@@ -263,6 +262,7 @@ class ItemView extends StatelessWidget {
               Row(children: [
                 Stack(children: [
                   Container(
+                    //padding: EdgeInsets.only(bottom: 50.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       boxShadow: const [
@@ -270,7 +270,7 @@ class ItemView extends StatelessWidget {
                       ],
                     ),
                     width: Dimensions.screenWidth * 0.40,
-                    height: Dimensions.screenHeight * 0.23,
+                    height: Dimensions.screenHeight * 0.18,
                     child: Image.asset(
                       _plantList[plantId].imageURL,
                       fit: BoxFit.cover,
@@ -278,9 +278,9 @@ class ItemView extends StatelessWidget {
                   ),
                   Positioned(
                       bottom: Dimensions.screenHeight * 0.01,
-                      right: 0,
-                      left: 0,
-                      top: Dimensions.screenHeight * 0.12,
+                      right: Dimensions.screenHeight * 0.01,
+                      left: Dimensions.screenHeight * 0.01,
+                      top: Dimensions.screenHeight * 0.09,
                       child: Container(
                         padding: EdgeInsets.only(
                           left: Dimensions.screenWidth * 0.01,
@@ -297,13 +297,16 @@ class ItemView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             BigText(
-                              text: _plantList[plantId].humidity.toString(),
+                              text: _plantList[plantId].plantName.toString(),
                               size: 14,
                             ),
                             SmallText(
-                              text: _plantList[plantId].humidity.toString(),
+                              text: _plantList[plantId].category.toString(),
                               size: 10,
                               color: AppColors.grey,
+                            ),
+                            SizedBox(
+                              height: Dimensions.screenHeight * 0.0001,
                             ),
                             Row(
                               children: [
@@ -313,7 +316,7 @@ class ItemView extends StatelessWidget {
                                   size: 12,
                                 ),
                                 SmallText(
-                                  text: _plantList[plantId].humidity.toString(),
+                                  text: _plantList[plantId].rating.toString(),
                                   size: 12,
                                   color: AppColors.grey,
                                 ),
@@ -321,7 +324,7 @@ class ItemView extends StatelessWidget {
                                   width: Dimensions.screenWidth * 0.1,
                                 ),
                                 SmallText(
-                                  text: _plantList[plantId].humidity.toString(),
+                                  text: _plantList[plantId].price.toString(),
                                   size: 12,
                                   color: AppColors.brown,
                                 ),

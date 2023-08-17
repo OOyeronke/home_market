@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:home_market/controller/favorite_controller.dart';
-import '../../controller/cart_controller.dart';
+import 'package:home_market/utilities/big_text.dart';
+import 'package:home_market/widget/button.dart';
 import '../../model/food_model.dart';
-import '../../model/market_model.dart';
 import '../../utilities/colors.dart';
 import '../../utilities/small_text.dart';
-import '../../widget/add_button.dart';
 import '../../widget/app_column.dart';
 import '../../widget/app_icon.dart';
-import '../../widget/customm_button.dart';
 import '../../widget/dimensions.dart';
 
 class ItemDetailPage extends StatefulWidget {
@@ -35,12 +31,6 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
   @override
   Widget build(BuildContext context) {
     List<Plant> _plantList = Plant.plantList;
-    // CartPageController controller = Get.find<CartPageController>();
-    // MarketItemModel model = controller.getItem(widget.itemId);
-
-    // FavoritePageController controllerFav = Get.find<FavoritePageController>();
-    // MarketItemModel modelFav = controllerFav.getFavItem(widget.itemId);
-    // TODO: implement build
     return Scaffold(
       body: Column(children: [
         Stack(children: [
@@ -48,7 +38,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
             width: Dimensions.screenWidth * 1,
             height: Dimensions.screenHeight * 0.44,
             child: Image.asset(
-              _plantList[widget.plantId].imageURL,
+              _plantList[widget.plantId].image2,
               fit: BoxFit.cover,
             ),
           ),
@@ -80,7 +70,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                       width: 40,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(25),
-                        color: Colors.blue.withOpacity(.15),
+                        color: Colors.white.withOpacity(.15),
                       ),
                       child: IconButton(
                           onPressed: () {
@@ -95,7 +85,7 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
                             _plantList[widget.plantId].isFavorated == true
                                 ? Icons.favorite
                                 : Icons.favorite_border,
-                            color: Colors.blue,
+                            color: AppColors.iconColor1,
                           )),
                     ),
                   ),
@@ -116,10 +106,10 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
             children: [
               AppColumn(
                 text: _plantList[widget.plantId].plantName,
-                rate: _plantList[widget.plantId].plantName,
+                rate: _plantList[widget.plantId].rating.toString(),
                 des: "Description",
-                description: _plantList[widget.plantId].plantName,
-                pack: _plantList[widget.plantId].plantName,
+                description: _plantList[widget.plantId].description,
+                pack: _plantList[widget.plantId].pack,
               ),
             ],
           ),
@@ -244,60 +234,93 @@ class _ItemDetailPageState extends State<ItemDetailPage> {
         ),
       ]),
       bottomNavigationBar: Container(
-          margin: EdgeInsets.only(bottom: 18.0),
-          height: 60.0,
+          // margin: EdgeInsets.all(20.0),
+          padding: EdgeInsets.all(5.0),
+          height: 80.0,
           decoration: BoxDecoration(
               color: Colors.white,
               border: Border(
                   top: BorderSide(color: Colors.grey.shade300, width: 1.0))),
           child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
                   child: Row(
                     children: <Widget>[
                       Container(
-                        width: 60.0,
-                        child: Text(
-                          "Total Amount",
-                          style: TextStyle(fontSize: 12.0, color: Colors.grey),
+                        //width: 60.0,
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
+                          child: Column(
+                            children: [
+                              const Text(
+                                "Price",
+                                style: TextStyle(
+                                    fontSize: 12.0, color: Colors.grey),
+                              ),
+                              BigText(
+                                text:
+                                    _plantList[widget.plantId].price.toString(),
+                                size: 20,
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                      Text(_plantList[widget.plantId].plantName,
-                          style: TextStyle(
-                              fontSize: 25.0, fontWeight: FontWeight.w600)),
+                      // Text(_plantList[widget.plantId].plantName,
+                      //     style: TextStyle(
+                      //         fontSize: 25.0, fontWeight: FontWeight.w600)),
                     ],
                   ),
                 ),
-                Container(
-                  child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          bool isSelected = toggleIsSelected(
-                              _plantList[widget.plantId].isSelected);
 
-                          _plantList[widget.plantId].isSelected = isSelected;
-                        });
-                      },
-                      icon: Icon(
-                        Icons.shopping_cart,
-                        color: _plantList[widget.plantId].isSelected == true
-                            ? Colors.white
-                            : Colors.blue,
-                      )),
-                  decoration: BoxDecoration(
-                      color: _plantList[widget.plantId].isSelected == true
-                          ? Colors.blue.withOpacity(.5)
-                          : Colors.white,
-                      borderRadius: BorderRadius.circular(50),
-                      boxShadow: [
-                        BoxShadow(
-                          offset: const Offset(0, 1),
-                          blurRadius: 5,
-                          color: Colors.blue.withOpacity(.3),
-                        ),
-                      ]),
-                ),
+                Container(
+                    child: CustomButton(
+                        width: 170,
+                        textsize: 16,
+                        text: _plantList[widget.plantId].isSelected == true
+                            ? 'Remove from Cart'
+                            : 'Add to Cart',
+                        onPressed: () {
+                          setState(() {
+                            bool isSelected = toggleIsSelected(
+                                _plantList[widget.plantId].isSelected);
+                            _plantList[widget.plantId].isSelected = isSelected;
+                            // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            //     content:
+                            //         Text("Item added in cart successfully")));
+                          });
+                        })),
+
+                // Container(
+                //   child: IconButton(
+                //       onPressed: () {
+                //         setState(() {
+                //           bool isSelected = toggleIsSelected(
+                //               _plantList[widget.plantId].isSelected);
+                //           _plantList[widget.plantId].isSelected = isSelected;
+                //         });
+                //       },
+                //       icon: Icon(
+                //         Icons.shopping_cart,
+                //         color: _plantList[widget.plantId].isSelected == true
+                //             ? Colors.white
+                //             : Colors.blue,
+                //       )),
+                //   decoration: BoxDecoration(
+                //       color: _plantList[widget.plantId].isSelected == true
+                //           ? Colors.blue.withOpacity(.5)
+                //           : Colors.white,
+                //       borderRadius: BorderRadius.circular(50),
+                //       boxShadow: [
+                //         BoxShadow(
+                //           offset: const Offset(0, 1),
+                //           blurRadius: 5,
+                //           color: Colors.blue.withOpacity(.3),
+                //         ),
+                //       ]),
+                // ),
                 // GetBuilder<CartPageController>(builder: (_) {
                 //   bool isAdded = controller.isAlreadyInCart(model.id);
                 //   if (isAdded) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_market/utilities/colors.dart';
 import '../../model/food_model.dart';
 import '../../widget/plant_widget.dart';
 
@@ -15,6 +16,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(title: const Text('Cart Page')),
       body: widget.addedToCartPlants.isEmpty
           ? Center(
               child: Column(
@@ -23,15 +25,15 @@ class _CartPageState extends State<CartPage> {
                 children: [
                   SizedBox(
                     height: 100,
-                    child: Image.asset('assets/images/signup.png'),
+                    child: Image.asset('assets/images/add-cart.png'),
                   ),
                   const SizedBox(
                     height: 10,
                   ),
-                  Text(
+                  const Text(
                     'Your Cart is Empty',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: AppColors.mainColor,
                       fontWeight: FontWeight.w300,
                       fontSize: 18,
                     ),
@@ -55,16 +57,16 @@ class _CartPageState extends State<CartPage> {
                               plantList: widget.addedToCartPlants);
                         }),
                   ),
-                  Column(
+                  const Column(
                     children: [
-                      const Divider(
+                      Divider(
                         thickness: 1.0,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          const Text(
+                          Text(
                             'Totals',
                             style: TextStyle(
                               fontSize: 23,
@@ -75,7 +77,7 @@ class _CartPageState extends State<CartPage> {
                             r'$65',
                             style: TextStyle(
                               fontSize: 24.0,
-                              color: Colors.blue,
+                              color: AppColors.mainColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
